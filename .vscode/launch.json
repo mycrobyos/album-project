@@ -1,0 +1,36 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "AlbunsApplication",
+      "request": "launch",
+      "mainClass": "br.com.ada.albuns.AlbunsApplication",
+      "projectName": "albuns"
+    },
+    {
+      "type": "java",
+      "name": "EurekaserverApplication",
+      "request": "launch",
+      "mainClass": "br.com.ada.eurekaserver.EurekaserverApplication",
+      "projectName": "eurekaserver"
+    },
+    {
+      "type": "java",
+      "name": "StickersApplication",
+      "request": "launch",
+      "mainClass": "br.com.ada.stickers.StickersApplication",
+      "projectName": "stickers"
+    },
+    {
+      "type": "java",
+      "name": "UsersApplication",
+      "request": "launch",
+      "mainClass": "br.com.ada.users.UsersApplication",
+      "projectName": "users"
+    }
+  ]
+}

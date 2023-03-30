@@ -1,0 +1,484 @@
+@host_users = http://localhost:8100
+@host_albuns = http://localhost:8080
+@host_stickers = http://localhost:8090
+@albumTemplate_id = {{albumTemplate.response.body.$.id}}
+@stickerTemplate1_id = {{stickerTemplate1.response.body.$.id}}
+@stickerTemplate2_id = {{stickerTemplate2.response.body.$.id}}
+@stickerTemplate3_id = {{stickerTemplate3.response.body.$.id}}
+@stickerTemplate4_id = {{stickerTemplate4.response.body.$.id}}
+@stickerTemplate5_id = {{stickerTemplate5.response.body.$.id}}
+@stickerTemplate6_id = {{stickerTemplate6.response.body.$.id}}
+@stickerTemplate7_id = {{stickerTemplate7.response.body.$.id}}
+@stickerTemplate8_id = {{stickerTemplate8.response.body.$.id}}
+@stickerTemplate9_id = {{stickerTemplate9.response.body.$.id}}
+@stickerTemplate10_id = {{stickerTemplate10.response.body.$.id}}
+@stickerTemplate11_id = {{stickerTemplate11.response.body.$.id}}
+@stickerTemplate12_id = {{stickerTemplate12.response.body.$.id}}
+@stickerTemplate13_id = {{stickerTemplate13.response.body.$.id}}
+@stickerTemplate14_id = {{stickerTemplate14.response.body.$.id}}
+@stickerTemplate15_id = {{stickerTemplate15.response.body.$.id}}
+@stickerTemplate16_id = {{stickerTemplate16.response.body.$.id}}
+@stickerTemplate17_id = {{stickerTemplate17.response.body.$.id}}
+@stickerTemplate18_id = {{stickerTemplate18.response.body.$.id}}
+@stickerTemplate19_id = {{stickerTemplate19.response.body.$.id}}
+@stickerTemplate20_id = {{stickerTemplate20.response.body.$.id}}
+@user_id = {{user.response.body.$.id}}
+@userDestination_id = {{userDestination.response.body.$.id}}
+@album_id = {{album.response.body.$.id}}
+@albumDestination_id = {{albumDestination.response.body.$.id}}
+@sticker_id = {{sticker.response.body.$.id}}
+
+
+###
+###
+###
+### Create user
+# @name user
+
+POST {{host_users}}/users HTTP/1.1
+
+{
+  "name":"usuario",
+  "document":"1234",
+  "email":"usuario@email",
+  "address":{
+    "street":"1",
+    "number":"2",
+    "neighborhood":"3",
+    "complement":"4",
+    "city":"sao paulo",
+    "state":"sp",
+    "zipCode":"1234"
+  }
+}
+
+### Create userDestination
+# @name userDestination
+
+POST {{host_users}}/users HTTP/1.1
+
+{
+  "name":"usuario2",
+  "document":"4321",
+  "email":"usuario2@email",
+  "address":{
+    "street":"1",
+    "number":"2",
+    "neighborhood":"3",
+    "complement":"4",
+    "city":"sao paulo",
+    "state":"sp",
+    "zipCode":"1234"
+  }
+}
+
+### Find All Users
+
+GET {{host_users}}/users HTTP/1.1
+
+
+###
+###
+###
+### Create Album Template
+# @name albumTemplate
+
+POST {{host_albuns}}/album/template HTTP/1.1
+
+{
+  "name": "Fifa World Cup Qatar 2022",
+  "cover": "imagem",
+  "numStickers": 20,
+  "price": 50,
+  "launchDate": "01-01-2022 00:00",
+  "expirationDate": "31-12-2022 00:00"
+}
+
+### Find All
+
+GET {{host_albuns}}/album/template HTTP/1.1
+
+
+###
+###
+###
+### Create Sticker Template
+# @name stickerTemplate1
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+  "number": 1,
+  "description": "Figurinha da Seleção",
+  "image": "image",
+  "rarity": 2,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate2
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+  "number": 2,
+  "description": "Figurinha do Escudo do Brasil",
+  "image": "image",
+  "rarity": 2,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate3
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+  "number": 3,
+  "description": "Figurinha do Goleiro Alisson",
+  "image": "image",
+  "rarity": 3,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate4
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 4,
+    "description": "Figurinha do Goleiro Ederson",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate5
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 5,
+    "description": "Figurinha do Alex Sandro",
+    "image": "image",
+    "rarity": 3,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate6
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 6,
+    "description": "Figurinha do Danilo",
+    "image": "image",
+    "rarity": 3,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate7
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 7,
+    "description": "Figurinha do Éder Militão",
+    "image": "image",
+    "rarity": 3,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate8
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 8,
+    "description": "Figurinha do Marquinhos",
+    "image": "image",
+    "rarity": 3,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate9
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 9,
+    "description": "Figurinha do Thiago Silva",
+    "image": "image",
+    "rarity": 2,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate10
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 10,
+    "description": "Figurinha do Casemiro",
+    "image": "image",
+    "rarity": 2,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate11
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 11,
+    "description": "Figurinha do Philippe Coutinho",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate12
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 12,
+    "description": "Figurinha do Fabinho",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate13
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 13,
+    "description": "Figurinha do Fred",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate14
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 14,
+    "description": "Figurinha do Lucas Paquetá",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate15
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 15,
+    "description": "Figurinha do Antony",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate16
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 16,
+    "description": "Figurinha do Gabriel Jesus",
+    "image": "image",
+    "rarity": 3,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate17
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 17,
+    "description": "Figurinha do Neymar Jr",
+    "image": "image",
+    "rarity": 1,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate18
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 18,
+    "description": "Figurinha do Raphinha",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate19
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 19,
+    "description": "Figurinha do Richarlison",
+    "image": "image",
+    "rarity": 4,
+  "stickerPrice":100.00
+}
+###
+# @name stickerTemplate20
+
+POST {{host_stickers}}/sticker/template HTTP/1.1
+
+{
+  "albumTemplateId":"{{albumTemplate_id}}",
+    "number": 20,
+    "description": "Figurinha do Vinícius Jr",
+    "image": "image",
+    "rarity": 1,
+  "stickerPrice":100.00
+}
+
+### Find All
+
+GET {{host_stickers}}/sticker/template HTTP/1.1
+
+
+###
+###
+###
+### Create Album
+# @name album
+
+POST {{host_albuns}}/album HTTP/1.1
+
+{
+  "userId":"{{user_id}}",
+  "albumTemplateId":"{{albumTemplate_id}}"
+}
+
+
+###
+###
+###
+### Create Album
+# @name albumDestination
+
+POST {{host_albuns}}/album HTTP/1.1
+
+{
+  "userId":"{{userDestination_id}}}",
+  "albumTemplateId":"{{albumTemplate_id}}"
+}
+
+### Find All Albuns
+
+GET {{host_albuns}}/album HTTP/1.1
+
+
+###
+###
+###
+### Create Sticker
+# @name sticker
+
+POST {{host_stickers}}/sticker HTTP/1.1
+
+{
+  "stickerTemplateId":"{{stickerTemplate1_id}}",
+  "albumId":"{{album_id}}"
+}
+
+
+### Find All Stickers
+
+GET {{host_stickers}}/sticker HTTP/1.1
+
+
+###
+###
+### 
+### Put Up For Sale
+
+POST {{host_stickers}}/sticker/sell
+
+{
+    "sticker": {
+        "id": "{{sticker_id}}"
+    },
+    "price": 3.97
+}
+
+
+###
+###
+### 
+### Find All Sticker For Sale
+
+GET {{host_stickers}}/sticker/sell
+
+
+###
+###
+### 
+### Buy Sticker
+
+POST {{host_stickers}}/sticker/buy
+
+{
+    "stickerId": "{{sticker_id}}",
+    "destinationAlbumId": "{{albumDestination_id}}"
+}
+
+
+###
+###
+### 
+### Buy Sticker Pack <<<<<<<<<<<not working>>>>>>>>>>>
+
+POST {{host_stickers}}/sticker/buy/pack
+
+{
+    "albumId": "{{album_id}}",
+    "destinationAlbumId": "{{albumDestination_id}}"
+}
+
+
+###
+###
+### 
+### Album Journal
+
+GET {{host_albuns}}/album/journal
+
+
+###
+###
+### 
+### Sticker Journal
+
+GET {{host_stickers}}/sticker/journal
