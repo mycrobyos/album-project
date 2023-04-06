@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: users
+  datasource:
+    #url: jdbc:h2:file:~\usersdb
+    url: jdbc:h2:mem:usersdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8100
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+# actuator
+management:
+  endpoint:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include:*
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java:
+      version: @java.version@
+

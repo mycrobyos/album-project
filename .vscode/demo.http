@@ -22,7 +22,7 @@
 @stickerTemplate18_id = {{stickerTemplate18.response.body.$.id}}
 @stickerTemplate19_id = {{stickerTemplate19.response.body.$.id}}
 @stickerTemplate20_id = {{stickerTemplate20.response.body.$.id}}
-@user_id = {{user.response.body.$.id}}
+@user_id = {{Usuario.response.body.$.id}}
 @userDestination_id = {{userDestination.response.body.$.id}}
 @album_id = {{album.response.body.$.id}}
 @albumDestination_id = {{albumDestination.response.body.$.id}}
@@ -32,8 +32,8 @@
 ###
 ###
 ###
-### Create user
-# @name user
+### Create Usuario
+# @name Usuario
 
 POST {{host_users}}/users HTTP/1.1
 
