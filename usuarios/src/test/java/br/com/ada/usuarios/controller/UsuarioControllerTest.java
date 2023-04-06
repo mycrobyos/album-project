@@ -1,4 +1,4 @@
-package br.com.ada.users.controller;
+package br.com.ada.usuarios.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -16,23 +16,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.ada.users.model.dto.PhoneDTO;
-import br.com.ada.users.model.dto.UserCreationDTO;
-import br.com.ada.users.model.dto.UserDTO;
-import br.com.ada.users.model.dto.UserUpdateDTO;
-import br.com.ada.users.model.entity.Phone;
-import br.com.ada.users.model.mapper.PhoneMapper;
-import br.com.ada.users.service.impl.UserServiceImpl;
+import br.com.ada.usuarios.model.dto.PhoneDTO;
+import br.com.ada.usuarios.model.dto.UsuarioCreationDTO;
+import br.com.ada.usuarios.model.dto.UsuarioDTO;
+import br.com.ada.usuarios.model.dto.UsuarioUpdateDTO;
+import br.com.ada.usuarios.model.entity.Phone;
+import br.com.ada.usuarios.model.mapper.PhoneMapper;
+import br.com.ada.usuarios.service.impl.UsuarioServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 
 @SpringBootTest
-public class UserControllerTest {
+public class UsuarioControllerTest {
 
     @Mock
-    private UserServiceImpl userService;
+    private UsuarioServiceImpl usuarioService;
 
     @InjectMocks
-    private UserController userController;
+    private UsuarioController usuarioController;
 
     @Mock
     private PhoneMapper phoneMapper;
@@ -40,51 +40,51 @@ public class UserControllerTest {
     @Test
     public void testFindAll() {
         //arrange
-        List<UserDTO> userDTOS = new ArrayList<>();
-        Mockito.when(userService.findAll()).thenReturn(userDTOS);
+        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+        Mockito.when(usuarioService.findAll()).thenReturn(usuarioDTOS);
         //act
-        ResponseEntity<List<UserDTO>> response = userController.findAll();
+        ResponseEntity<List<UsuarioDTO>> response = usuarioController.findAll();
         //assert
-        Mockito.verify(userService).findAll();
+        Mockito.verify(usuarioService).findAll();
         Assert.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-        //Assert.assertEquals(userDTOS, response.getBody());
+        //Assert.assertEquals(usuarioDTOS, response.getBody());
     }
 
     @Test
     public void findById() {
         //arrange
-        UserDTO userDTO = new UserDTO();
-        Mockito.when(userService.findById(anyString())).thenReturn(userDTO);
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        Mockito.when(usuarioService.findById(anyString())).thenReturn(usuarioDTO);
         //act
-        ResponseEntity<UserDTO> response = userController.findById("1");
+        ResponseEntity<UsuarioDTO> response = usuarioController.findById("1");
         //assert
-        Mockito.verify(userService).findById("1");
+        Mockito.verify(usuarioService).findById("1");
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
     public void create() {
         //arrange
-        UserDTO userDTO = new UserDTO();
-        UserCreationDTO userCreationDTO = new UserCreationDTO();
-        Mockito.when(userService.create(userCreationDTO)).thenReturn(userDTO);
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        UsuarioCreationDTO usuarioCreationDTO = new UsuarioCreationDTO();
+        Mockito.when(usuarioService.create(usuarioCreationDTO)).thenReturn(usuarioDTO);
         //act
-        ResponseEntity<UserDTO> response = userController.create(userCreationDTO);
+        ResponseEntity<UsuarioDTO> response = usuarioController.create(usuarioCreationDTO);
         //assert
-        Mockito.verify(userService).create(userCreationDTO);
+        Mockito.verify(usuarioService).create(usuarioCreationDTO);
         Assert.assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
     public void edit() {
         //arrange
-        UserDTO userDTO = new UserDTO();
-        UserUpdateDTO userUpdateDTO = new UserUpdateDTO();
-        Mockito.when(userService.edit("id", userUpdateDTO)).thenReturn(userDTO);
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        UsuarioUpdateDTO usuarioUpdateDTO = new UsuarioUpdateDTO();
+        Mockito.when(usuarioService.edit("id", usuarioUpdateDTO)).thenReturn(usuarioDTO);
         //act
-        ResponseEntity<UserDTO> response = userController.edit("id", userUpdateDTO);
+        ResponseEntity<UsuarioDTO> response = usuarioController.edit("id", usuarioUpdateDTO);
         //assert
-        Mockito.verify(userService).edit("id", userUpdateDTO);
+        Mockito.verify(usuarioService).edit("id", usuarioUpdateDTO);
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
@@ -92,9 +92,9 @@ public class UserControllerTest {
     public void delete() {
         //arrange
         //act
-        ResponseEntity<Object> response = userController.delete("id");
+        ResponseEntity<Object> response = usuarioController.delete("id");
         //assert
-        Mockito.verify(userService).delete("id");
+        Mockito.verify(usuarioService).delete("id");
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
@@ -103,11 +103,11 @@ public class UserControllerTest {
         //arrange
         final String id = UUID.randomUUID().toString();
         final List<Phone> phones = new ArrayList<>();
-        Mockito.when(userService.findPhones(id)).thenReturn(phones);
+        Mockito.when(usuarioService.findPhones(id)).thenReturn(phones);
         //act
-        ResponseEntity<List<PhoneDTO>> response = (userController.findPhones(id));
+        ResponseEntity<List<PhoneDTO>> response = (usuarioController.findPhones(id));
         //assert
-        Mockito.verify(userService).findPhones(id);
+        Mockito.verify(usuarioService).findPhones(id);
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
@@ -115,9 +115,9 @@ public class UserControllerTest {
     public void findPhonesNoContent() {
         //arrange
         final String id = UUID.randomUUID().toString();
-        Mockito.when(userService.findPhones(id)).thenThrow(EntityNotFoundException.class);
+        Mockito.when(usuarioService.findPhones(id)).thenThrow(EntityNotFoundException.class);
         //act
-        ResponseEntity<List<PhoneDTO>> response = userController.findPhones(id);
+        ResponseEntity<List<PhoneDTO>> response = usuarioController.findPhones(id);
         //assert
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }

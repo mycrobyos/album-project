@@ -1,21 +1,21 @@
-package br.com.ada.users.model.mapper;
+package br.com.ada.usuarios.model.mapper;
 
-import br.com.ada.users.model.dto.UserDTO;
-import br.com.ada.users.model.dto.UserUpdateDTO;
-import br.com.ada.users.model.entity.User;
-import br.com.ada.users.model.dto.UserCreationDTO;
+import br.com.ada.usuarios.model.dto.UsuarioDTO;
+import br.com.ada.usuarios.model.dto.UsuarioUpdateDTO;
+import br.com.ada.usuarios.model.entity.Usuario;
+import br.com.ada.usuarios.model.dto.UsuarioCreationDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper {
+public interface UsuarioMapper {
 
-    UserDTO parseDTO(User user);
-    User parseEntity(UserDTO userDTO);
+    UsuarioDTO parseDTO(Usuario usuario);
+    Usuario parseEntity(UsuarioDTO usuarioDTO);
 
-    User parseEntity(UserCreationDTO userDTO);
-    User parseEntity(UserUpdateDTO userDTO);
-    List<UserDTO> parseListDTO(List<User> users);
+    Usuario parseEntity(UsuarioCreationDTO usuarioDTO);
+    Usuario parseEntity(UsuarioUpdateDTO usuarioDTO);
+    List<UsuarioDTO> parseListDTO(List<Usuario> usuarios);
 
 }

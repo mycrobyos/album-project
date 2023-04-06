@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class StickerTemplateDTO {
+public class FigurinhaPrototipoDTO {
 
     private String id;
 
-    private String albumTemplateId;
+    private String albumPrototipoId;
 
     private Integer number;
 
@@ -25,6 +25,6 @@ public class StickerTemplateDTO {
 
     private Integer rarity;
 
-    private BigDecimal stickerPrice;
+    private BigDecimal figurinhaPrice;
 
 }

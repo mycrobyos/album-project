@@ -1,13 +1,13 @@
-package br.com.ada.users.service.impl;
+package br.com.ada.usuarios.service.impl;
 
-import br.com.ada.users.model.dto.UserCreationDTO;
-import br.com.ada.users.model.dto.UserDTO;
-import br.com.ada.users.model.dto.UserUpdateDTO;
-import br.com.ada.users.model.entity.Phone;
-import br.com.ada.users.model.entity.User;
-import br.com.ada.users.model.mapper.UserMapper;
-import br.com.ada.users.repository.UserRepository;
-import br.com.ada.users.service.UserService;
+import br.com.ada.usuarios.model.dto.UsuarioCreationDTO;
+import br.com.ada.usuarios.model.dto.UsuarioDTO;
+import br.com.ada.usuarios.model.dto.UsuarioUpdateDTO;
+import br.com.ada.usuarios.model.entity.Phone;
+import br.com.ada.usuarios.model.entity.Usuario;
+import br.com.ada.usuarios.model.mapper.UsuarioMapper;
+import br.com.ada.usuarios.repository.UsuarioRepository;
+import br.com.ada.usuarios.service.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -15,48 +15,48 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UsuarioServiceImpl implements UsuarioService {
 
-    private final UserRepository repository;
-    private final UserMapper mapper;
+    private final UsuarioRepository repository;
+    private final UsuarioMapper mapper;
 
-    public UserServiceImpl(UserRepository repository, UserMapper mapper) {
+    public UsuarioServiceImpl(UsuarioRepository repository, UsuarioMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
     
     @Override
-    public List<UserDTO> findAll() {
+    public List<UsuarioDTO> findAll() {
         return mapper.parseListDTO(repository.findAll());
     }
 
     @Override
-    public UserDTO findById(String id) {
-        Optional<User> userOptional = repository.findById(id);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            return mapper.parseDTO(user);
+    public UsuarioDTO findById(String id) {
+        Optional<Usuario> usuarioOptional = repository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            return mapper.parseDTO(usuario);
         }
         throw new EntityNotFoundException();
     }
 
     @Override
-    public UserDTO create(UserCreationDTO entity) {
-        User user = mapper.parseEntity(entity);
-        user.setId(null);
-        repository.save(user);
-        return mapper.parseDTO(user);
+    public UsuarioDTO create(UsuarioCreationDTO entity) {
+        Usuario usuario = mapper.parseEntity(entity);
+        usuario.setId(null);
+        repository.save(usuario);
+        return mapper.parseDTO(usuario);
     }
 
     @Override
-    public UserDTO edit(String id, UserUpdateDTO entity) {
-        Optional<User> optional = repository.findById(id);
+    public UsuarioDTO edit(String id, UsuarioUpdateDTO entity) {
+        Optional<Usuario> optional = repository.findById(id);
         if (optional.isPresent()) {
-            User user = mapper.parseEntity(entity);
-            user.setId(id);
-            user.setAddress(optional.get().getAddress());
-            user = repository.save(user);
-            return mapper.parseDTO(user);
+            Usuario usuario = mapper.parseEntity(entity);
+            usuario.setId(id);
+            usuario.setAddress(optional.get().getAddress());
+            usuario = repository.save(usuario);
+            return mapper.parseDTO(usuario);
         }
         throw new EntityNotFoundException();
     }

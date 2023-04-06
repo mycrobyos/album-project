@@ -1,10 +1,10 @@
-package br.com.ada.users;
+package br.com.ada.usuarios;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UsersApplicationTests {
+class UsuariosApplicationTests {
 
     @Test
     void contextLoads() {

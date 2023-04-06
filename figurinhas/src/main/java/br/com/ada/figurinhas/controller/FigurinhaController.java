@@ -1,9 +1,9 @@
-package br.com.ada.stickers.controller;
+package br.com.ada.figurinhas.controller;
 
-import br.com.ada.stickers.model.dto.*;
-import br.com.ada.stickers.model.mapper.StickerMapper;
-import br.com.ada.stickers.service.StickerService;
-import br.com.ada.stickers.service.StickerServiceWithJournal;
+import br.com.ada.figurinhas.model.dto.*;
+import br.com.ada.figurinhas.model.mapper.FigurinhaMapper;
+import br.com.ada.figurinhas.service.FigurinhaService;
+import br.com.ada.figurinhas.service.FigurinhaServiceWithJournal;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -17,24 +17,24 @@ import java.util.List;
 @Slf4j
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "/sticker")
-public class StickerController {
+@RequestMapping(value = "/figurinha")
+public class FigurinhaController {
 
-    private final StickerService service;
-    private final StickerMapper mapper;
-    private final StickerServiceWithJournal stickerServiceWithJournal;
+    private final FigurinhaService service;
+    private final FigurinhaMapper mapper;
+    private final FigurinhaServiceWithJournal figurinhaServiceWithJournal;
 
-    public StickerController(final StickerService service,
-                             final StickerMapper mapper,
-                             final StickerServiceWithJournal stickerServiceWithJournal) {
+    public FigurinhaController(final FigurinhaService service,
+                             final FigurinhaMapper mapper,
+                             final FigurinhaServiceWithJournal figurinhaServiceWithJournal) {
         this.service = service;
         this.mapper = mapper;
-        this.stickerServiceWithJournal = stickerServiceWithJournal;
+        this.figurinhaServiceWithJournal = figurinhaServiceWithJournal;
     }
 
     @GetMapping
-    public ResponseEntity<List<StickerDTO>> findAll() {
-        final List<StickerDTO> response = service.findAll();
+    public ResponseEntity<List<FigurinhaDTO>> findAll() {
+        final List<FigurinhaDTO> response = service.findAll();
         if (response.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
         }
@@ -42,7 +42,7 @@ public class StickerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StickerDTO> findById(@PathVariable("id") String id) {
+    public ResponseEntity<FigurinhaDTO> findById(@PathVariable("id") String id) {
         try {
             return ResponseEntity.ok(service.findById(id));
         } catch (EntityNotFoundException ex) {
@@ -54,7 +54,7 @@ public class StickerController {
     }
 
     @PostMapping
-    public ResponseEntity<StickerDTO> create(@RequestBody @Valid StickerCreationDTO creationDTO) {
+    public ResponseEntity<FigurinhaDTO> create(@RequestBody @Valid FigurinhaCreationDTO creationDTO) {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
@@ -67,8 +67,8 @@ public class StickerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StickerDTO> edit(@PathVariable("id") String id,
-                                           @RequestBody @Valid StickerUpdateDTO updateDTO) {
+    public ResponseEntity<FigurinhaDTO> edit(@PathVariable("id") String id,
+                                           @RequestBody @Valid FigurinhaUpdateDTO updateDTO) {
         try {
             return ResponseEntity.ok(mapper.parseDTO(service.edit(id, updateDTO)));
         } catch (EntityNotFoundException ex) {
@@ -93,12 +93,12 @@ public class StickerController {
     }
 
     @PostMapping("/buy/pack")
-    public ResponseEntity<List<StickerDTO>> buyStickerPack(@RequestBody @Valid StickerBuyPackDTO stickerBuyPackDTO) {
+    public ResponseEntity<List<FigurinhaDTO>> buyFigurinhaPack(@RequestBody @Valid FigurinhaBuyPackDTO figurinhaBuyPackDTO) {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(mapper.parseListDTO(stickerServiceWithJournal.buyStickerPack(stickerBuyPackDTO)));
+                    .body(mapper.parseListDTO(figurinhaServiceWithJournal.buyFigurinhaPack(figurinhaBuyPackDTO)));
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -106,12 +106,12 @@ public class StickerController {
     }
 
     @PostMapping("/buy")
-    public ResponseEntity<StickerDTO> buyStickerFromAlbum(@RequestBody @Valid StickerBuyFromAlbumDTO stickerBuyFromAlbumDTO) {
+    public ResponseEntity<FigurinhaDTO> buyFigurinhaFromAlbum(@RequestBody @Valid FigurinhaBuyFromAlbumDTO figurinhaBuyFromAlbumDTO) {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(mapper.parseDTO(stickerServiceWithJournal.buyStickerFromAlbum(stickerBuyFromAlbumDTO)));
+                    .body(mapper.parseDTO(figurinhaServiceWithJournal.buyFigurinhaFromAlbum(figurinhaBuyFromAlbumDTO)));
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

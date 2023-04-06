@@ -1,11 +1,11 @@
-package br.com.ada.users.model.dto;
+package br.com.ada.usuarios.model.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserDTO {
+public class UsuarioDTO {
 
     private String id;
 

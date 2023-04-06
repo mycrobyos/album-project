@@ -1,4 +1,4 @@
-package br.com.ada.users.model.dto;
+package br.com.ada.usuarios.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserUpdateDTO {
+public class UsuarioUpdateDTO {
 
     @NotBlank(message = "Name field is missing or blank.")
     private String name;

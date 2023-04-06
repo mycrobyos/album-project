@@ -1,4 +1,4 @@
-package br.com.ada.users.model.dto;
+package br.com.ada.usuarios.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +17,6 @@ public class PhoneCreationDTO {
     @NotBlank(message = "PhoneNumber field is missing or blank.")
     private String phoneNumber;
 
-    @NotNull(message = "User field is missing or blank.")
-    private UserDTO user;
+    @NotNull(message = "Usuario field is missing or blank.")
+    private UsuarioDTO usuario;
 }

@@ -1,9 +1,9 @@
-package br.com.ada.users.model.mapper;
+package br.com.ada.usuarios.model.mapper;
 
-import br.com.ada.users.model.dto.PhoneCreationDTO;
-import br.com.ada.users.model.dto.PhoneDTO;
-import br.com.ada.users.model.dto.PhoneUpdateDTO;
-import br.com.ada.users.model.entity.Phone;
+import br.com.ada.usuarios.model.dto.PhoneCreationDTO;
+import br.com.ada.usuarios.model.dto.PhoneDTO;
+import br.com.ada.usuarios.model.dto.PhoneUpdateDTO;
+import br.com.ada.usuarios.model.entity.Phone;
 import org.mapstruct.Mapper;
 
 import java.util.List;

@@ -1,18 +1,18 @@
-package br.com.ada.users.service;
+package br.com.ada.usuarios.service;
 
-import br.com.ada.users.model.dto.UserCreationDTO;
-import br.com.ada.users.model.dto.UserDTO;
-import br.com.ada.users.model.dto.UserUpdateDTO;
-import br.com.ada.users.model.entity.Phone;
+import br.com.ada.usuarios.model.dto.UsuarioCreationDTO;
+import br.com.ada.usuarios.model.dto.UsuarioDTO;
+import br.com.ada.usuarios.model.dto.UsuarioUpdateDTO;
+import br.com.ada.usuarios.model.entity.Phone;
 
 import java.util.List;
 
-public interface UserService {
+public interface UsuarioService {
 
-    List<UserDTO> findAll();
-    UserDTO findById(String id);
-    UserDTO create(UserCreationDTO entity);
-    UserDTO edit(String id, UserUpdateDTO entity);
+    List<UsuarioDTO> findAll();
+    UsuarioDTO findById(String id);
+    UsuarioDTO create(UsuarioCreationDTO entity);
+    UsuarioDTO edit(String id, UsuarioUpdateDTO entity);
     void delete(String id);
     List<Phone> findPhones(String id);
 }

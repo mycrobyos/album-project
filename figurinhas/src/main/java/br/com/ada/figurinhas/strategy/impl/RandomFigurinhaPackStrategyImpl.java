@@ -1,34 +1,34 @@
-package br.com.ada.stickers.strategy.impl;
+package br.com.ada.figurinhas.strategy.impl;
 
-import br.com.ada.stickers.exceptions.InsufficientNumberOfStickers;
-import br.com.ada.stickers.model.entity.Sticker;
-import br.com.ada.stickers.strategy.StickerPackStrategy;
+import br.com.ada.figurinhas.exceptions.InsufficientNumberOfFigurinhas;
+import br.com.ada.figurinhas.model.entity.Figurinha;
+import br.com.ada.figurinhas.strategy.FigurinhaPackStrategy;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class RandomStickerPackStrategyImpl implements StickerPackStrategy {
+public class RandomFigurinhaPackStrategyImpl implements FigurinhaPackStrategy {
 
     @Override
-    public List<Sticker> createStickerPack(List<Sticker> stickers, Integer size) {
-        if (Objects.isNull(stickers) || stickers.isEmpty() || Objects.isNull(size)) {
+    public List<Figurinha> createFigurinhaPack(List<Figurinha> figurinhas, Integer size) {
+        if (Objects.isNull(figurinhas) || figurinhas.isEmpty() || Objects.isNull(size)) {
             throw new RuntimeException();
         }
-        if (stickers.size() < size) {
-            throw new InsufficientNumberOfStickers();
+        if (figurinhas.size() < size) {
+            throw new InsufficientNumberOfFigurinhas();
         }
         final Set<Integer> generatedPositions = new LinkedHashSet<>();
         final Random generator = new Random();
-        final Integer max = stickers.size() - 1;
+        final Integer max = figurinhas.size() - 1;
         while (generatedPositions.size() < size) {
             final Integer position = generator.nextInt(max);
             generatedPositions.add(position);
         }
         return generatedPositions
                 .stream()
-                .map(position -> stickers.get(position))
+                .map(position -> figurinhas.get(position))
                 .collect(Collectors.toList());
     }
 }

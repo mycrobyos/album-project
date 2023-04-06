@@ -1,4 +1,4 @@
-package br.com.ada.users.model.entity;
+package br.com.ada.usuarios.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class Phone {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "usuario_id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
+    private Usuario usuario;
 }

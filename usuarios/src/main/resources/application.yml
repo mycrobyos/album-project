@@ -1,11 +1,11 @@
 spring:
   application:
-    name: users
+    name: usuarios
   datasource:
-    #url: jdbc:h2:file:~\usersdb
-    url: jdbc:h2:mem:usersdb
+    #url: jdbc:h2:file:~\usuariosdb
+    url: jdbc:h2:mem:usuariosdb
     driverClassName: org.h2.Driver
-    username: sa
+    usuarioname: sa
     password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect

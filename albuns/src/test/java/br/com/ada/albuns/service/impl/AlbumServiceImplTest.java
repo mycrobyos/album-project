@@ -19,33 +19,33 @@ import br.com.ada.albuns.model.entity.Album;
 import br.com.ada.albuns.model.mapper.AlbumMapper;
 import br.com.ada.albuns.model.mapper.AlbumMapperImpl;
 import br.com.ada.albuns.repository.AlbumRepository;
-import br.com.ada.albuns.service.StickerService;
+import br.com.ada.albuns.service.FigurinhaService;
 import jakarta.persistence.EntityNotFoundException;
 
 public class AlbumServiceImplTest {
 	private AlbumRepository repository;
 	private AlbumMapper mapper;
-	private StickerService stickerService;
+	private FigurinhaService figurinhaService;
 	private AlbumServiceImpl service;
 
 	@BeforeEach
 	public void setUp() {
 		this.repository = mock(AlbumRepository.class);
 		this.mapper = new AlbumMapperImpl();
-		this.stickerService = mock(StickerService.class);
-		this.service = new AlbumServiceImpl(repository, mapper, stickerService);
+		this.figurinhaService = mock(FigurinhaService.class);
+		this.service = new AlbumServiceImpl(repository, mapper, figurinhaService);
 	}
 	
 	@Test
 	public void testFindAll() {
 		// Arrange
 		String id = UUID.randomUUID().toString();
-		String albumTemplateId = "AlbumTemplateId";
-		String userId = "UserId";
+		String albumPrototipoId = "AlbumPrototipoId";
+		String usuarioId = "UsuarioId";
 		Album album = Album.builder()
 				.id(id)
-				.albumTemplateId(albumTemplateId)
-				.userId(userId)
+				.albumPrototipoId(albumPrototipoId)
+				.usuarioId(usuarioId)
 				.build();
 		when(repository.findAll()).thenReturn(List.of(album));
 		
@@ -55,20 +55,20 @@ public class AlbumServiceImplTest {
 		// Assert
 		assertEquals(1, actualAlbums.size());
 		assertEquals(id, actualAlbums.get(0).getId());
-		assertEquals(albumTemplateId, actualAlbums.get(0).getAlbumTemplateId());
-		assertEquals(userId, actualAlbums.get(0).getUserId());
+		assertEquals(albumPrototipoId, actualAlbums.get(0).getAlbumPrototipoId());
+		assertEquals(usuarioId, actualAlbums.get(0).getUsuarioId());
 	}
 
 	@Test
 	public void testFindById() {
 		// Arrange
 		String id = UUID.randomUUID().toString();
-		String albumTemplateId = "AlbumTemplateId";
-		String userId = "UserId";
+		String albumPrototipoId = "AlbumPrototipoId";
+		String usuarioId = "UsuarioId";
 		Album album = Album.builder()
 				.id(id)
-				.albumTemplateId(albumTemplateId)
-				.userId(userId)
+				.albumPrototipoId(albumPrototipoId)
+				.usuarioId(usuarioId)
 				.build();
 		when(repository.findById(id)).thenReturn(Optional.of(album));
 		
@@ -77,8 +77,8 @@ public class AlbumServiceImplTest {
 		
 		// Assert
 		assertEquals(id, actualAlbum.getId());
-		assertEquals(albumTemplateId, actualAlbum.getAlbumTemplateId());
-		assertEquals(userId, actualAlbum.getUserId());
+		assertEquals(albumPrototipoId, actualAlbum.getAlbumPrototipoId());
+		assertEquals(usuarioId, actualAlbum.getUsuarioId());
 	}
 
 	@Test
@@ -95,16 +95,16 @@ public class AlbumServiceImplTest {
 	public void testCreate() {
 		// Arrange
 		String id = UUID.randomUUID().toString();
-		String albumTemplateId = "AlbumTemplateId";
-		String userId = "UserId";
+		String albumPrototipoId = "AlbumPrototipoId";
+		String usuarioId = "UsuarioId";
 		AlbumDTO albumDTO = AlbumDTO.builder()
-				.albumTemplateId(albumTemplateId)
-				.userId(userId)
+				.albumPrototipoId(albumPrototipoId)
+				.usuarioId(usuarioId)
 				.build();
 		Album savedAlbum = Album.builder()
 				.id(id)
-				.albumTemplateId(albumTemplateId)
-				.userId(userId)
+				.albumPrototipoId(albumPrototipoId)
+				.usuarioId(usuarioId)
 				.build();
 
 		when(repository.save(any())).thenReturn(savedAlbum);
@@ -114,39 +114,39 @@ public class AlbumServiceImplTest {
 		
 		// Assert
 		assertEquals(id, actualAlbumDTO.getId());
-		assertEquals(albumTemplateId, actualAlbumDTO.getAlbumTemplateId());
-		assertEquals(userId, actualAlbumDTO.getUserId());
+		assertEquals(albumPrototipoId, actualAlbumDTO.getAlbumPrototipoId());
+		assertEquals(usuarioId, actualAlbumDTO.getUsuarioId());
 	}
 	
 	@Test
 	public void testFindDefaultAlbum() {
 		// Arrange
 		String id = UUID.randomUUID().toString();
-		String albumTemplateId = "AlbumTemplateId";
+		String albumPrototipoId = "AlbumPrototipoId";
 		Album album = Album.builder()
 				.id(id)
-				.albumTemplateId(albumTemplateId)
-				.userId(null)
+				.albumPrototipoId(albumPrototipoId)
+				.usuarioId(null)
 				.build();
 		
-		when(repository.findByUserIdAndAlbumTemplateId(null, albumTemplateId)).thenReturn(Optional.of(album));
+		when(repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId)).thenReturn(Optional.of(album));
 		
 		// Act
-		AlbumDTO actualAlbumDTO = service.findDefaultAlbum(albumTemplateId);
+		AlbumDTO actualAlbumDTO = service.findDefaultAlbum(albumPrototipoId);
 		
 		// Assert
 		assertEquals(id, actualAlbumDTO.getId());
-		assertEquals(albumTemplateId, actualAlbumDTO.getAlbumTemplateId());
-		assertNull(actualAlbumDTO.getUserId());
+		assertEquals(albumPrototipoId, actualAlbumDTO.getAlbumPrototipoId());
+		assertNull(actualAlbumDTO.getUsuarioId());
 	}
 
 	@Test
 	public void testFindDefaultAlbumNotFound() {
 		// Arrange
-		String albumTemplateId = "AlbumTemplateId";
-		when(repository.findByUserIdAndAlbumTemplateId(null, albumTemplateId)).thenReturn(Optional.empty());
+		String albumPrototipoId = "AlbumPrototipoId";
+		when(repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId)).thenReturn(Optional.empty());
 		
 		// Act/Assert
-		assertThrows(EntityNotFoundException.class, () -> service.findDefaultAlbum(albumTemplateId));
+		assertThrows(EntityNotFoundException.class, () -> service.findDefaultAlbum(albumPrototipoId));
 	}
 }

@@ -1,32 +1,32 @@
-@host_users = http://localhost:8100
+@host_usuarios = http://localhost:8100
 @host_albuns = http://localhost:8080
-@host_stickers = http://localhost:8090
-@albumTemplate_id = {{albumTemplate.response.body.$.id}}
-@stickerTemplate1_id = {{stickerTemplate1.response.body.$.id}}
-@stickerTemplate2_id = {{stickerTemplate2.response.body.$.id}}
-@stickerTemplate3_id = {{stickerTemplate3.response.body.$.id}}
-@stickerTemplate4_id = {{stickerTemplate4.response.body.$.id}}
-@stickerTemplate5_id = {{stickerTemplate5.response.body.$.id}}
-@stickerTemplate6_id = {{stickerTemplate6.response.body.$.id}}
-@stickerTemplate7_id = {{stickerTemplate7.response.body.$.id}}
-@stickerTemplate8_id = {{stickerTemplate8.response.body.$.id}}
-@stickerTemplate9_id = {{stickerTemplate9.response.body.$.id}}
-@stickerTemplate10_id = {{stickerTemplate10.response.body.$.id}}
-@stickerTemplate11_id = {{stickerTemplate11.response.body.$.id}}
-@stickerTemplate12_id = {{stickerTemplate12.response.body.$.id}}
-@stickerTemplate13_id = {{stickerTemplate13.response.body.$.id}}
-@stickerTemplate14_id = {{stickerTemplate14.response.body.$.id}}
-@stickerTemplate15_id = {{stickerTemplate15.response.body.$.id}}
-@stickerTemplate16_id = {{stickerTemplate16.response.body.$.id}}
-@stickerTemplate17_id = {{stickerTemplate17.response.body.$.id}}
-@stickerTemplate18_id = {{stickerTemplate18.response.body.$.id}}
-@stickerTemplate19_id = {{stickerTemplate19.response.body.$.id}}
-@stickerTemplate20_id = {{stickerTemplate20.response.body.$.id}}
-@user_id = {{Usuario.response.body.$.id}}
-@userDestination_id = {{userDestination.response.body.$.id}}
+@host_figurinhas = http://localhost:8090
+@albumPrototipo_id = {{albumPrototipo.response.body.$.id}}
+@figurinhaPrototipo1_id = {{figurinhaPrototipo1.response.body.$.id}}
+@figurinhaPrototipo2_id = {{figurinhaPrototipo2.response.body.$.id}}
+@figurinhaPrototipo3_id = {{figurinhaPrototipo3.response.body.$.id}}
+@figurinhaPrototipo4_id = {{figurinhaPrototipo4.response.body.$.id}}
+@figurinhaPrototipo5_id = {{figurinhaPrototipo5.response.body.$.id}}
+@figurinhaPrototipo6_id = {{figurinhaPrototipo6.response.body.$.id}}
+@figurinhaPrototipo7_id = {{figurinhaPrototipo7.response.body.$.id}}
+@figurinhaPrototipo8_id = {{figurinhaPrototipo8.response.body.$.id}}
+@figurinhaPrototipo9_id = {{figurinhaPrototipo9.response.body.$.id}}
+@figurinhaPrototipo10_id = {{figurinhaPrototipo10.response.body.$.id}}
+@figurinhaPrototipo11_id = {{figurinhaPrototipo11.response.body.$.id}}
+@figurinhaPrototipo12_id = {{figurinhaPrototipo12.response.body.$.id}}
+@figurinhaPrototipo13_id = {{figurinhaPrototipo13.response.body.$.id}}
+@figurinhaPrototipo14_id = {{figurinhaPrototipo14.response.body.$.id}}
+@figurinhaPrototipo15_id = {{figurinhaPrototipo15.response.body.$.id}}
+@figurinhaPrototipo16_id = {{figurinhaPrototipo16.response.body.$.id}}
+@figurinhaPrototipo17_id = {{figurinhaPrototipo17.response.body.$.id}}
+@figurinhaPrototipo18_id = {{figurinhaPrototipo18.response.body.$.id}}
+@figurinhaPrototipo19_id = {{figurinhaPrototipo19.response.body.$.id}}
+@figurinhaPrototipo20_id = {{figurinhaPrototipo20.response.body.$.id}}
+@usuario_id = {{Usuario.response.body.$.id}}
+@usuarioDestination_id = {{usuarioDestination.response.body.$.id}}
 @album_id = {{album.response.body.$.id}}
 @albumDestination_id = {{albumDestination.response.body.$.id}}
-@sticker_id = {{sticker.response.body.$.id}}
+@figurinha_id = {{figurinha.response.body.$.id}}
 
 
 ###
@@ -35,7 +35,7 @@
 ### Create Usuario
 # @name Usuario
 
-POST {{host_users}}/users HTTP/1.1
+POST {{host_usuarios}}/usuarios HTTP/1.1
 
 {
   "name":"usuario",
@@ -52,10 +52,10 @@ POST {{host_users}}/users HTTP/1.1
   }
 }
 
-### Create userDestination
-# @name userDestination
+### Create usuarioDestination
+# @name usuarioDestination
 
-POST {{host_users}}/users HTTP/1.1
+POST {{host_usuarios}}/usuarios HTTP/1.1
 
 {
   "name":"usuario2",
@@ -72,23 +72,23 @@ POST {{host_users}}/users HTTP/1.1
   }
 }
 
-### Find All Users
+### Find All Usuarios
 
-GET {{host_users}}/users HTTP/1.1
+GET {{host_usuarios}}/usuarios HTTP/1.1
 
 
 ###
 ###
 ###
-### Create Album Template
-# @name albumTemplate
+### Create Album Prototipo
+# @name albumPrototipo
 
-POST {{host_albuns}}/album/template HTTP/1.1
+POST {{host_albuns}}/album/prototipo HTTP/1.1
 
 {
   "name": "Fifa World Cup Qatar 2022",
   "cover": "imagem",
-  "numStickers": 20,
+  "numFigurinhas": 20,
   "price": 50,
   "launchDate": "01-01-2022 00:00",
   "expirationDate": "31-12-2022 00:00"
@@ -96,276 +96,276 @@ POST {{host_albuns}}/album/template HTTP/1.1
 
 ### Find All
 
-GET {{host_albuns}}/album/template HTTP/1.1
+GET {{host_albuns}}/album/prototipo HTTP/1.1
 
 
 ###
 ###
 ###
-### Create Sticker Template
-# @name stickerTemplate1
+### Create Figurinha Prototipo
+# @name figurinhaPrototipo1
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
   "number": 1,
   "description": "Figurinha da Seleção",
   "image": "image",
   "rarity": 2,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate2
+# @name figurinhaPrototipo2
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
   "number": 2,
   "description": "Figurinha do Escudo do Brasil",
   "image": "image",
   "rarity": 2,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate3
+# @name figurinhaPrototipo3
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
   "number": 3,
   "description": "Figurinha do Goleiro Alisson",
   "image": "image",
   "rarity": 3,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate4
+# @name figurinhaPrototipo4
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 4,
     "description": "Figurinha do Goleiro Ederson",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate5
+# @name figurinhaPrototipo5
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 5,
     "description": "Figurinha do Alex Sandro",
     "image": "image",
     "rarity": 3,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate6
+# @name figurinhaPrototipo6
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 6,
     "description": "Figurinha do Danilo",
     "image": "image",
     "rarity": 3,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate7
+# @name figurinhaPrototipo7
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 7,
     "description": "Figurinha do Éder Militão",
     "image": "image",
     "rarity": 3,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate8
+# @name figurinhaPrototipo8
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 8,
     "description": "Figurinha do Marquinhos",
     "image": "image",
     "rarity": 3,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate9
+# @name figurinhaPrototipo9
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 9,
     "description": "Figurinha do Thiago Silva",
     "image": "image",
     "rarity": 2,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate10
+# @name figurinhaPrototipo10
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 10,
     "description": "Figurinha do Casemiro",
     "image": "image",
     "rarity": 2,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate11
+# @name figurinhaPrototipo11
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 11,
     "description": "Figurinha do Philippe Coutinho",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate12
+# @name figurinhaPrototipo12
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 12,
     "description": "Figurinha do Fabinho",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate13
+# @name figurinhaPrototipo13
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 13,
     "description": "Figurinha do Fred",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate14
+# @name figurinhaPrototipo14
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 14,
     "description": "Figurinha do Lucas Paquetá",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate15
+# @name figurinhaPrototipo15
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 15,
     "description": "Figurinha do Antony",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate16
+# @name figurinhaPrototipo16
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 16,
     "description": "Figurinha do Gabriel Jesus",
     "image": "image",
     "rarity": 3,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate17
+# @name figurinhaPrototipo17
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 17,
     "description": "Figurinha do Neymar Jr",
     "image": "image",
     "rarity": 1,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate18
+# @name figurinhaPrototipo18
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 18,
     "description": "Figurinha do Raphinha",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate19
+# @name figurinhaPrototipo19
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 19,
     "description": "Figurinha do Richarlison",
     "image": "image",
     "rarity": 4,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 ###
-# @name stickerTemplate20
+# @name figurinhaPrototipo20
 
-POST {{host_stickers}}/sticker/template HTTP/1.1
+POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
-  "albumTemplateId":"{{albumTemplate_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}",
     "number": 20,
     "description": "Figurinha do Vinícius Jr",
     "image": "image",
     "rarity": 1,
-  "stickerPrice":100.00
+  "figurinhaPrice":100.00
 }
 
 ### Find All
 
-GET {{host_stickers}}/sticker/template HTTP/1.1
+GET {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 
 ###
@@ -377,8 +377,8 @@ GET {{host_stickers}}/sticker/template HTTP/1.1
 POST {{host_albuns}}/album HTTP/1.1
 
 {
-  "userId":"{{user_id}}",
-  "albumTemplateId":"{{albumTemplate_id}}"
+  "usuarioId":"{{usuario_id}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}"
 }
 
 
@@ -391,8 +391,8 @@ POST {{host_albuns}}/album HTTP/1.1
 POST {{host_albuns}}/album HTTP/1.1
 
 {
-  "userId":"{{userDestination_id}}}",
-  "albumTemplateId":"{{albumTemplate_id}}"
+  "usuarioId":"{{usuarioDestination_id}}}",
+  "albumPrototipoId":"{{albumPrototipo_id}}"
 }
 
 ### Find All Albuns
@@ -403,20 +403,20 @@ GET {{host_albuns}}/album HTTP/1.1
 ###
 ###
 ###
-### Create Sticker
-# @name sticker
+### Create Figurinha
+# @name figurinha
 
-POST {{host_stickers}}/sticker HTTP/1.1
+POST {{host_figurinhas}}/figurinha HTTP/1.1
 
 {
-  "stickerTemplateId":"{{stickerTemplate1_id}}",
+  "figurinhaPrototipoId":"{{figurinhaPrototipo1_id}}",
   "albumId":"{{album_id}}"
 }
 
 
-### Find All Stickers
+### Find All Figurinhas
 
-GET {{host_stickers}}/sticker HTTP/1.1
+GET {{host_figurinhas}}/figurinha HTTP/1.1
 
 
 ###
@@ -424,11 +424,11 @@ GET {{host_stickers}}/sticker HTTP/1.1
 ### 
 ### Put Up For Sale
 
-POST {{host_stickers}}/sticker/sell
+POST {{host_figurinhas}}/figurinha/sell
 
 {
-    "sticker": {
-        "id": "{{sticker_id}}"
+    "figurinha": {
+        "id": "{{figurinha_id}}"
     },
     "price": 3.97
 }
@@ -437,20 +437,20 @@ POST {{host_stickers}}/sticker/sell
 ###
 ###
 ### 
-### Find All Sticker For Sale
+### Find All Figurinha For Sale
 
-GET {{host_stickers}}/sticker/sell
+GET {{host_figurinhas}}/figurinha/sell
 
 
 ###
 ###
 ### 
-### Buy Sticker
+### Buy Figurinha
 
-POST {{host_stickers}}/sticker/buy
+POST {{host_figurinhas}}/figurinha/buy
 
 {
-    "stickerId": "{{sticker_id}}",
+    "figurinhaId": "{{figurinha_id}}",
     "destinationAlbumId": "{{albumDestination_id}}"
 }
 
@@ -458,9 +458,9 @@ POST {{host_stickers}}/sticker/buy
 ###
 ###
 ### 
-### Buy Sticker Pack <<<<<<<<<<<not working>>>>>>>>>>>
+### Buy Figurinha Pack <<<<<<<<<<<not working>>>>>>>>>>>
 
-POST {{host_stickers}}/sticker/buy/pack
+POST {{host_figurinhas}}/figurinha/buy/pack
 
 {
     "albumId": "{{album_id}}",
@@ -479,6 +479,6 @@ GET {{host_albuns}}/album/journal
 ###
 ###
 ### 
-### Sticker Journal
+### Figurinha Journal
 
-GET {{host_stickers}}/sticker/journal
+GET {{host_figurinhas}}/figurinha/journal

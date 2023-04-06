@@ -1,4 +1,4 @@
-package br.com.ada.users.model.dto;
+package br.com.ada.usuarios.model.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +14,5 @@ public class PhoneDTO {
 
     private String phoneNumber;
 
-    private UserDTO user;
+    private UsuarioDTO usuario;
 }

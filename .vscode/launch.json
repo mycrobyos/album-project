@@ -20,17 +20,17 @@
     },
     {
       "type": "java",
-      "name": "StickersApplication",
+      "name": "FigurinhasApplication",
       "request": "launch",
-      "mainClass": "br.com.ada.stickers.StickersApplication",
-      "projectName": "stickers"
+      "mainClass": "br.com.ada.figurinhas.FigurinhasApplication",
+      "projectName": "figurinhas"
     },
     {
       "type": "java",
-      "name": "UsersApplication",
+      "name": "UsuariosApplication",
       "request": "launch",
-      "mainClass": "br.com.ada.users.UsersApplication",
-      "projectName": "users"
+      "mainClass": "br.com.ada.usuarios.UsuariosApplication",
+      "projectName": "usuarios"
     }
   ]
 }

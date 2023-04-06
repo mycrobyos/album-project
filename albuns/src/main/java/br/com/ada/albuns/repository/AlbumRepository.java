@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.ada.albuns.model.entity.Album;
 
 public interface AlbumRepository extends JpaRepository<Album, String>{
-	Optional<Album> findByUserIdAndAlbumTemplateId(String userId, String albumTemplateId);
+	Optional<Album> findByUsuarioIdAndAlbumPrototipoId(String usuarioId, String albumPrototipoId);
 }

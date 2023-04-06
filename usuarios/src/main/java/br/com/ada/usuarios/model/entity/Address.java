@@ -1,4 +1,4 @@
-package br.com.ada.users.model.entity;
+package br.com.ada.usuarios.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,5 +38,5 @@ public class Address {
     private String zipCode;
 
     @OneToOne(mappedBy = "address")
-    private User user;
+    private Usuario usuario;
 }

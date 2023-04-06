@@ -1,13 +1,13 @@
-package br.com.ada.users;
+package br.com.ada.usuarios;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UsersApplication {
+public class UsuariosApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UsersApplication.class, args);
+        SpringApplication.run(UsuariosApplication.class, args);
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.ada.users.model.dto;
+package br.com.ada.usuarios.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

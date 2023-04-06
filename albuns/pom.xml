@@ -101,7 +101,7 @@
                 </executions>
                 <configuration>
                     <excludes> 
-                        <exclude>br/com/ada/stickers/model/**/**/*</exclude>
+                        <exclude>br/com/ada/figurinhas/model/**/**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>  

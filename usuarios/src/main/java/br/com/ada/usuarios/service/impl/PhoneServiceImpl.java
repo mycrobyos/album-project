@@ -1,12 +1,12 @@
-package br.com.ada.users.service.impl;
+package br.com.ada.usuarios.service.impl;
 
-import br.com.ada.users.model.dto.PhoneCreationDTO;
-import br.com.ada.users.model.dto.PhoneDTO;
-import br.com.ada.users.model.dto.PhoneUpdateDTO;
-import br.com.ada.users.model.entity.Phone;
-import br.com.ada.users.model.mapper.PhoneMapper;
-import br.com.ada.users.repository.PhoneRepository;
-import br.com.ada.users.service.PhoneService;
+import br.com.ada.usuarios.model.dto.PhoneCreationDTO;
+import br.com.ada.usuarios.model.dto.PhoneDTO;
+import br.com.ada.usuarios.model.dto.PhoneUpdateDTO;
+import br.com.ada.usuarios.model.entity.Phone;
+import br.com.ada.usuarios.model.mapper.PhoneMapper;
+import br.com.ada.usuarios.repository.PhoneRepository;
+import br.com.ada.usuarios.service.PhoneService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 

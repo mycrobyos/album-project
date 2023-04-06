@@ -5,7 +5,7 @@ import br.com.ada.albuns.model.entity.Album;
 import br.com.ada.albuns.model.mapper.AlbumMapper;
 import br.com.ada.albuns.repository.AlbumRepository;
 import br.com.ada.albuns.service.AlbumService;
-import br.com.ada.albuns.service.StickerService;
+import br.com.ada.albuns.service.FigurinhaService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +16,13 @@ public class  AlbumServiceImpl implements AlbumService {
 
   private final AlbumRepository repository;
   private final AlbumMapper mapper;
-  private final StickerService stickerService;
+  private final FigurinhaService figurinhaService;
 
   public AlbumServiceImpl(AlbumRepository repository, AlbumMapper mapper,
-		  StickerService stickerService) {
+		  FigurinhaService figurinhaService) {
     this.repository = repository;
     this.mapper = mapper;
-    this.stickerService = stickerService;
+    this.figurinhaService = figurinhaService;
   }
 
   @Override
@@ -43,14 +43,14 @@ public class  AlbumServiceImpl implements AlbumService {
 
     album = repository.save(album);
     
-    stickerService.createStickersForAlbum(entity.getAlbumTemplateId());
+    figurinhaService.createFigurinhasForAlbum(entity.getAlbumPrototipoId());
     
     return mapper.parseDTO(album);
   }
 
   @Override
-  public AlbumDTO findDefaultAlbum(String albumTemplateId) {
-    Album defaultAlbum = repository.findByUserIdAndAlbumTemplateId(null, albumTemplateId).orElseThrow(() -> new EntityNotFoundException());
+  public AlbumDTO findDefaultAlbum(String albumPrototipoId) {
+    Album defaultAlbum = repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId).orElseThrow(() -> new EntityNotFoundException());
     return mapper.parseDTO(defaultAlbum);
   }
 }

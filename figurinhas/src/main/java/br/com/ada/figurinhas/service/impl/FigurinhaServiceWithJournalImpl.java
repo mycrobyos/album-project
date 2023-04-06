@@ -1,15 +1,15 @@
-package br.com.ada.stickers.service.impl;
+package br.com.ada.figurinhas.service.impl;
 
-import br.com.ada.stickers.exceptions.StickerNotAvailableForSale;
-import br.com.ada.stickers.model.dto.*;
-import br.com.ada.stickers.model.entity.Sticker;
-import br.com.ada.stickers.model.entity.StickerToSell;
-import br.com.ada.stickers.model.mapper.StickerMapper;
-import br.com.ada.stickers.service.StickerJournalService;
-import br.com.ada.stickers.service.StickerService;
-import br.com.ada.stickers.service.StickerServiceWithJournal;
-import br.com.ada.stickers.service.StickerToSellService;
-import br.com.ada.stickers.strategy.StickerPackStrategy;
+import br.com.ada.figurinhas.exceptions.FigurinhaNotAvailableForSale;
+import br.com.ada.figurinhas.model.dto.*;
+import br.com.ada.figurinhas.model.entity.Figurinha;
+import br.com.ada.figurinhas.model.entity.FigurinhaToSell;
+import br.com.ada.figurinhas.model.mapper.FigurinhaMapper;
+import br.com.ada.figurinhas.service.FigurinhaJournalService;
+import br.com.ada.figurinhas.service.FigurinhaService;
+import br.com.ada.figurinhas.service.FigurinhaServiceWithJournal;
+import br.com.ada.figurinhas.service.FigurinhaToSellService;
+import br.com.ada.figurinhas.strategy.FigurinhaPackStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,101 +19,101 @@ import java.util.List;
 import java.util.Optional;
 
 /* Design Pattern: Strategy Pattern.
- * In the buyStickerPack method, we need to get stickers to add to a pack.
- * There are many strategies for choosing stickers. Therefore, we can create an
+ * In the buyFigurinhaPack method, we need to get figurinhas to add to a pack.
+ * There are many strategies for choosing figurinhas. Therefore, we can create an
  * interface and several implementations of this interface that choose
- * the stickers in different ways. Here, we have created an algorithm that
- * chooses stickers randomly (RandomStickerPackStrategyImpl.java).
+ * the figurinhas in different ways. Here, we have created an algorithm that
+ * chooses figurinhas randomly (RandomFigurinhaPackStrategyImpl.java).
  */
 @Slf4j
 @Service
-public class StickerServiceWithJournalImpl implements StickerServiceWithJournal {
+public class FigurinhaServiceWithJournalImpl implements FigurinhaServiceWithJournal {
 
-    private final StickerJournalService stickerJournalService;
-    private final StickerService stickerService;
-    private final StickerMapper stickerMapper;
-    private final StickerToSellService stickerToSellService;
-    private final StickerPackStrategy stickerPackStrategy;
-    public StickerServiceWithJournalImpl(final StickerService stickerService,
-                                         final StickerJournalService stickerJournalService,
-                                         final StickerMapper stickerMapper,
-                                         final StickerToSellService stickerToSellService, StickerPackStrategy stickerPackStrategy) {
-        this.stickerService = stickerService;
-        this.stickerJournalService = stickerJournalService;
-        this.stickerMapper = stickerMapper;
-        this.stickerToSellService = stickerToSellService;
-        this.stickerPackStrategy = stickerPackStrategy;
+    private final FigurinhaJournalService figurinhaJournalService;
+    private final FigurinhaService figurinhaService;
+    private final FigurinhaMapper figurinhaMapper;
+    private final FigurinhaToSellService figurinhaToSellService;
+    private final FigurinhaPackStrategy figurinhaPackStrategy;
+    public FigurinhaServiceWithJournalImpl(final FigurinhaService figurinhaService,
+                                         final FigurinhaJournalService figurinhaJournalService,
+                                         final FigurinhaMapper figurinhaMapper,
+                                         final FigurinhaToSellService figurinhaToSellService, FigurinhaPackStrategy figurinhaPackStrategy) {
+        this.figurinhaService = figurinhaService;
+        this.figurinhaJournalService = figurinhaJournalService;
+        this.figurinhaMapper = figurinhaMapper;
+        this.figurinhaToSellService = figurinhaToSellService;
+        this.figurinhaPackStrategy = figurinhaPackStrategy;
     }
     
     @Override
-    public List<Sticker> buyStickerPack(final StickerBuyPackDTO stickerBuyPackDTO) {
-        List<Sticker> soldStickers = new ArrayList<>();
+    public List<Figurinha> buyFigurinhaPack(final FigurinhaBuyPackDTO figurinhaBuyPackDTO) {
+        List<Figurinha> soldFigurinhas = new ArrayList<>();
         final Integer size = 5;
-        final String albumId = stickerBuyPackDTO.getAlbumId();
-        final String destinationAlbumId = stickerBuyPackDTO.getDestinationAlbumId();
+        final String albumId = figurinhaBuyPackDTO.getAlbumId();
+        final String destinationAlbumId = figurinhaBuyPackDTO.getDestinationAlbumId();
 
-        // Get list of stickers from album template
-        final List<Sticker> stickersFromAlbumId = stickerService.findByAlbumId(albumId);
-        final List<Sticker> stickersFromDestnationAlbumId = stickerService.findByAlbumId(destinationAlbumId);
+        // Get list of figurinhas from album prototipo
+        final List<Figurinha> figurinhasFromAlbumId = figurinhaService.findByAlbumId(albumId);
+        final List<Figurinha> figurinhasFromDestnationAlbumId = figurinhaService.findByAlbumId(destinationAlbumId);
 
-        // It generates a pack of stickers to be sold
-        soldStickers = stickerPackStrategy.createStickerPack(stickersFromAlbumId, size);
+        // It generates a pack of figurinhas to be sold
+        soldFigurinhas = figurinhaPackStrategy.createFigurinhaPack(figurinhasFromAlbumId, size);
 
-        // Edit all stickers with new album id
-        soldStickers.forEach(sticker -> sticker.setAlbumId(destinationAlbumId));
-        soldStickers = stickerService.editAll(soldStickers);
+        // Edit all figurinhas with new album id
+        soldFigurinhas.forEach(figurinha -> figurinha.setAlbumId(destinationAlbumId));
+        soldFigurinhas = figurinhaService.editAll(soldFigurinhas);
 
-        // Add the sale to the transaction history (sticker journal).
-        soldStickers.forEach(soldSticker -> this.addStickerJournal(albumId, destinationAlbumId, soldSticker,
-                soldSticker.getStickerTemplate().getStickerPrice()));
-        return soldStickers;
+        // Add the sale to the transaction history (figurinha journal).
+        soldFigurinhas.forEach(soldFigurinha -> this.addFigurinhaJournal(albumId, destinationAlbumId, soldFigurinha,
+                soldFigurinha.getFigurinhaPrototipo().getFigurinhaPrice()));
+        return soldFigurinhas;
     }
 
     @Override
-    public Sticker buyStickerFromAlbum(final StickerBuyFromAlbumDTO stickerBuyFromAlbumDTO) {
-        Sticker sticker = null;
-        final String stickerId = stickerBuyFromAlbumDTO.getStickerId();
-        final String destinationAlbumId = stickerBuyFromAlbumDTO.getDestinationAlbumId();
+    public Figurinha buyFigurinhaFromAlbum(final FigurinhaBuyFromAlbumDTO figurinhaBuyFromAlbumDTO) {
+        Figurinha figurinha = null;
+        final String figurinhaId = figurinhaBuyFromAlbumDTO.getFigurinhaId();
+        final String destinationAlbumId = figurinhaBuyFromAlbumDTO.getDestinationAlbumId();
 
-        // Get sticker for sale
-        final Optional<StickerToSell> optional = stickerToSellService.findByStickerId(stickerId);
-        StickerToSell stickerToSell = null;
+        // Get figurinha for sale
+        final Optional<FigurinhaToSell> optional = figurinhaToSellService.findByFigurinhaId(figurinhaId);
+        FigurinhaToSell figurinhaToSell = null;
         if (optional.isPresent()) {
-            stickerToSell = optional.get();
-            sticker = stickerToSell.getSticker();
+            figurinhaToSell = optional.get();
+            figurinha = figurinhaToSell.getFigurinha();
         } else {
-            // Sticker is not available for sale.
-            String errorMsg = "Sticker " + stickerId + " not available for sale";
+            // Figurinha is not available for sale.
+            String errorMsg = "Figurinha " + figurinhaId + " not available for sale";
             log.error(errorMsg);
-            throw new StickerNotAvailableForSale();
+            throw new FigurinhaNotAvailableForSale();
         }
 
-        // Update sticker album.
-        final String sourceAlbum = sticker.getAlbumId();
-        sticker.setAlbumId(destinationAlbumId);
-        final StickerUpdateDTO stickerUpdateDTO = StickerUpdateDTO.builder()
-                .albumId(sticker.getAlbumId())
-                .stickerTemplateId(sticker.getStickerTemplate().getId())
+        // Update figurinha album.
+        final String sourceAlbum = figurinha.getAlbumId();
+        figurinha.setAlbumId(destinationAlbumId);
+        final FigurinhaUpdateDTO figurinhaUpdateDTO = FigurinhaUpdateDTO.builder()
+                .albumId(figurinha.getAlbumId())
+                .figurinhaPrototipoId(figurinha.getFigurinhaPrototipo().getId())
                 .build();
-        sticker = stickerService.edit(stickerId, stickerUpdateDTO);
+        figurinha = figurinhaService.edit(figurinhaId, figurinhaUpdateDTO);
 
-        // It makes the sticker unavailable for sale.
-        this.stickerToSellService.deleteByStickerId(stickerId);
+        // It makes the figurinha unavailable for sale.
+        this.figurinhaToSellService.deleteByFigurinhaId(figurinhaId);
 
-        // Add the sale to the transaction history (sticker journal).
-        this.addStickerJournal(sourceAlbum, destinationAlbumId, sticker, stickerToSell.getPrice());
-        return sticker;
+        // Add the sale to the transaction history (figurinha journal).
+        this.addFigurinhaJournal(sourceAlbum, destinationAlbumId, figurinha, figurinhaToSell.getPrice());
+        return figurinha;
     }
 
-    private StickerJournalDTO addStickerJournal(final String sourceAlbum, final String destinationAlbumId,
-                                                final Sticker sticker, final BigDecimal price) {
-        final StickerJournalCreationDTO stickerJournalCreationDTO = StickerJournalCreationDTO.builder()
+    private FigurinhaJournalDTO addFigurinhaJournal(final String sourceAlbum, final String destinationAlbumId,
+                                                final Figurinha figurinha, final BigDecimal price) {
+        final FigurinhaJournalCreationDTO figurinhaJournalCreationDTO = FigurinhaJournalCreationDTO.builder()
                 .sourceAlbumId(sourceAlbum)
                 .destinationAlbumId(destinationAlbumId)
-                .sticker(sticker)
+                .figurinha(figurinha)
                 .price(price)
                 .build();
-        return stickerJournalService.create(stickerJournalCreationDTO);
+        return figurinhaJournalService.create(figurinhaJournalCreationDTO);
     }
 
 }

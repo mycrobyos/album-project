@@ -1,4 +1,4 @@
-package br.com.ada.users.model.entity;
+package br.com.ada.usuarios.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
@@ -31,6 +31,6 @@ public class User {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Phone> phones;
 }

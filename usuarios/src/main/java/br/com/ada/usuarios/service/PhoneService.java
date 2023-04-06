@@ -1,8 +1,8 @@
-package br.com.ada.users.service;
+package br.com.ada.usuarios.service;
 
-import br.com.ada.users.model.dto.PhoneCreationDTO;
-import br.com.ada.users.model.dto.PhoneDTO;
-import br.com.ada.users.model.dto.PhoneUpdateDTO;
+import br.com.ada.usuarios.model.dto.PhoneCreationDTO;
+import br.com.ada.usuarios.model.dto.PhoneDTO;
+import br.com.ada.usuarios.model.dto.PhoneUpdateDTO;
 
 import java.util.List;
 

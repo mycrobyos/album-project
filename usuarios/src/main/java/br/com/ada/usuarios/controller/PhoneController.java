@@ -1,9 +1,9 @@
-package br.com.ada.users.controller;
+package br.com.ada.usuarios.controller;
 
-import br.com.ada.users.model.dto.PhoneCreationDTO;
-import br.com.ada.users.model.dto.PhoneDTO;
-import br.com.ada.users.model.dto.PhoneUpdateDTO;
-import br.com.ada.users.service.PhoneService;
+import br.com.ada.usuarios.model.dto.PhoneCreationDTO;
+import br.com.ada.usuarios.model.dto.PhoneDTO;
+import br.com.ada.usuarios.model.dto.PhoneUpdateDTO;
+import br.com.ada.usuarios.service.PhoneService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

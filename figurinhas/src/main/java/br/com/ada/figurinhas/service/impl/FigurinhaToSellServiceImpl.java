@@ -1,15 +1,15 @@
-package br.com.ada.stickers.service.impl;
+package br.com.ada.figurinhas.service.impl;
 
-import br.com.ada.stickers.model.dto.StickerToSellCreationDTO;
-import br.com.ada.stickers.model.dto.StickerToSellDTO;
-import br.com.ada.stickers.model.dto.StickerToSellUpdateDTO;
-import br.com.ada.stickers.model.entity.Sticker;
-import br.com.ada.stickers.model.entity.StickerToSell;
-import br.com.ada.stickers.model.mapper.StickerMapper;
-import br.com.ada.stickers.model.mapper.StickerToSellMapper;
-import br.com.ada.stickers.repository.StickerToSellRepository;
-import br.com.ada.stickers.service.StickerService;
-import br.com.ada.stickers.service.StickerToSellService;
+import br.com.ada.figurinhas.model.dto.FigurinhaToSellCreationDTO;
+import br.com.ada.figurinhas.model.dto.FigurinhaToSellDTO;
+import br.com.ada.figurinhas.model.dto.FigurinhaToSellUpdateDTO;
+import br.com.ada.figurinhas.model.entity.Figurinha;
+import br.com.ada.figurinhas.model.entity.FigurinhaToSell;
+import br.com.ada.figurinhas.model.mapper.FigurinhaMapper;
+import br.com.ada.figurinhas.model.mapper.FigurinhaToSellMapper;
+import br.com.ada.figurinhas.repository.FigurinhaToSellRepository;
+import br.com.ada.figurinhas.service.FigurinhaService;
+import br.com.ada.figurinhas.service.FigurinhaToSellService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -17,31 +17,31 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StickerToSellServiceImpl implements StickerToSellService {
+public class FigurinhaToSellServiceImpl implements FigurinhaToSellService {
 
-    private final StickerToSellRepository repository;
-    private final StickerToSellMapper mapper;
-    private final StickerService stickerService;
-    private final StickerMapper stickerMapper;
+    private final FigurinhaToSellRepository repository;
+    private final FigurinhaToSellMapper mapper;
+    private final FigurinhaService figurinhaService;
+    private final FigurinhaMapper figurinhaMapper;
 
-    public StickerToSellServiceImpl(final StickerToSellRepository repository,
-                                    final StickerToSellMapper mapper,
-                                    final StickerService stickerService,
-                                    final StickerMapper stickerMapper) {
+    public FigurinhaToSellServiceImpl(final FigurinhaToSellRepository repository,
+                                    final FigurinhaToSellMapper mapper,
+                                    final FigurinhaService figurinhaService,
+                                    final FigurinhaMapper figurinhaMapper) {
         this.repository = repository;
         this.mapper = mapper;
-        this.stickerService = stickerService;
-        this.stickerMapper = stickerMapper;
+        this.figurinhaService = figurinhaService;
+        this.figurinhaMapper = figurinhaMapper;
     }
     
     @Override
-    public List<StickerToSellDTO> findAll() {
+    public List<FigurinhaToSellDTO> findAll() {
         return mapper.parseListDTO(repository.findAll());
     }
 
     @Override
-    public StickerToSell findById(final String id) {
-        Optional<StickerToSell> optional = repository.findById(id);
+    public FigurinhaToSell findById(final String id) {
+        Optional<FigurinhaToSell> optional = repository.findById(id);
         if (optional.isPresent()) {
             return optional.get();
         }
@@ -49,21 +49,21 @@ public class StickerToSellServiceImpl implements StickerToSellService {
     }
 
     @Override
-    public StickerToSellDTO create(final StickerToSellCreationDTO creationDTO) {
-        StickerToSell entity = mapper.parseEntity(creationDTO);
-        Sticker stickerEntity = stickerMapper.parseEntity(
-                stickerService.findById(creationDTO.getSticker().getId()));
+    public FigurinhaToSellDTO create(final FigurinhaToSellCreationDTO creationDTO) {
+        FigurinhaToSell entity = mapper.parseEntity(creationDTO);
+        Figurinha figurinhaEntity = figurinhaMapper.parseEntity(
+                figurinhaService.findById(creationDTO.getFigurinha().getId()));
         entity.setId(null);
-        entity.setSticker(stickerEntity);
+        entity.setFigurinha(figurinhaEntity);
         entity = repository.save(entity);
         return mapper.parseDTO(entity);
     }
 
     @Override
-    public StickerToSellDTO edit(final String id, final StickerToSellUpdateDTO updateDTO) {
-        final Optional<StickerToSell> optional = repository.findById(id);
+    public FigurinhaToSellDTO edit(final String id, final FigurinhaToSellUpdateDTO updateDTO) {
+        final Optional<FigurinhaToSell> optional = repository.findById(id);
         if (optional.isPresent()) {
-            StickerToSell entity = optional.get();
+            FigurinhaToSell entity = optional.get();
             entity.setId(id);
             entity.setPrice(updateDTO.getPrice());
             entity = repository.save(entity);
@@ -81,8 +81,8 @@ public class StickerToSellServiceImpl implements StickerToSellService {
     }
 
     @Override
-    public void deleteByStickerId(String stickerId) {
-        Optional<StickerToSell> optional = repository.findByStickerId(stickerId);
+    public void deleteByFigurinhaId(String figurinhaId) {
+        Optional<FigurinhaToSell> optional = repository.findByFigurinhaId(figurinhaId);
         if (!optional.isPresent()) {
             throw new EntityNotFoundException();
         }
@@ -90,7 +90,7 @@ public class StickerToSellServiceImpl implements StickerToSellService {
     }
 
     @Override
-    public Optional<StickerToSell> findByStickerId(String stickerId) {
-        return repository.findByStickerId(stickerId);
+    public Optional<FigurinhaToSell> findByFigurinhaId(String figurinhaId) {
+        return repository.findByFigurinhaId(figurinhaId);
     }
 }

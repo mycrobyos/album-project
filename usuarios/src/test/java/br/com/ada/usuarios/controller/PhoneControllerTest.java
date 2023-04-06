@@ -1,4 +1,4 @@
-package br.com.ada.users.controller;
+package br.com.ada.usuarios.controller;
 
 import static org.mockito.ArgumentMatchers.anyString;
 
@@ -14,10 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.ada.users.model.dto.PhoneCreationDTO;
-import br.com.ada.users.model.dto.PhoneDTO;
-import br.com.ada.users.model.dto.PhoneUpdateDTO;
-import br.com.ada.users.service.impl.PhoneServiceImpl;
+import br.com.ada.usuarios.model.dto.PhoneCreationDTO;
+import br.com.ada.usuarios.model.dto.PhoneDTO;
+import br.com.ada.usuarios.model.dto.PhoneUpdateDTO;
+import br.com.ada.usuarios.service.impl.PhoneServiceImpl;
 
 @SpringBootTest
 public class PhoneControllerTest {
@@ -43,8 +43,8 @@ public class PhoneControllerTest {
     @Test
     public void findById() {
         //arrange
-        PhoneDTO userDTO = new PhoneDTO();
-        Mockito.when(phoneService.findById(anyString())).thenReturn(userDTO);
+        PhoneDTO usuarioDTO = new PhoneDTO();
+        Mockito.when(phoneService.findById(anyString())).thenReturn(usuarioDTO);
         //act
         ResponseEntity<PhoneDTO> response = phoneController.findById("1");
         //assert
@@ -55,9 +55,9 @@ public class PhoneControllerTest {
     @Test
     public void create() {
         //arrange
-        PhoneDTO userDTO = new PhoneDTO();
+        PhoneDTO usuarioDTO = new PhoneDTO();
         PhoneCreationDTO phoneCreationDTO = new PhoneCreationDTO();
-        Mockito.when(phoneService.create(phoneCreationDTO)).thenReturn(userDTO);
+        Mockito.when(phoneService.create(phoneCreationDTO)).thenReturn(usuarioDTO);
         //act
         ResponseEntity<PhoneDTO> response = phoneController.create(phoneCreationDTO);
         //assert
@@ -68,9 +68,9 @@ public class PhoneControllerTest {
     @Test
     public void edit() {
         //arrange
-        PhoneDTO userDTO = new PhoneDTO();
+        PhoneDTO usuarioDTO = new PhoneDTO();
         PhoneUpdateDTO phoneUpdateDTO = new PhoneUpdateDTO();
-        Mockito.when(phoneService.edit("id", phoneUpdateDTO)).thenReturn(userDTO);
+        Mockito.when(phoneService.edit("id", phoneUpdateDTO)).thenReturn(usuarioDTO);
         //act
         ResponseEntity<PhoneDTO> response = phoneController.edit("id", phoneUpdateDTO);
         //assert

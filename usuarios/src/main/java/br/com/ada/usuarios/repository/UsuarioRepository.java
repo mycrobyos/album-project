@@ -1,13 +1,13 @@
-package br.com.ada.users.repository;
+package br.com.ada.usuarios.repository;
 
-import br.com.ada.users.model.entity.Phone;
-import br.com.ada.users.model.entity.User;
+import br.com.ada.usuarios.model.entity.Phone;
+import br.com.ada.usuarios.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, String> {
-    @Query(value = "SELECT p FROM Phone p WHERE p.user.id = :id")
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+    @Query(value = "SELECT p FROM Phone p WHERE p.usuario.id = :id")
     List<Phone> findPhones(String id);
 }
