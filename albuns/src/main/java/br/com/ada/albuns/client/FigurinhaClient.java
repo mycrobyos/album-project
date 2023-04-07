@@ -13,4 +13,7 @@ import br.com.ada.albuns.client.dto.FigurinhaDTO;
 public interface FigurinhaClient {
     @PostMapping
     ResponseEntity<FigurinhaDTO> create(@RequestBody @Valid FigurinhaCreationDTO creationDTO);
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable("id") String id);
 }
