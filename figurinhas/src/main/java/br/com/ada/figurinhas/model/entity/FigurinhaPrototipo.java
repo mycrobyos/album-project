@@ -31,8 +31,8 @@ public class FigurinhaPrototipo {
     @Column(name = "image", nullable = false)
     private String image;
 
-    @Column(name = "rarity", nullable = false)
-    private Integer rarity;
+    @Column(name = "raridade", nullable = false)
+    private Integer raridade;
 
     @Column(name = "figurinha_price", nullable = false)
     private BigDecimal figurinhaPrice;

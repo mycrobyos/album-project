@@ -78,7 +78,7 @@ public class FigurinhaServiceImpl implements FigurinhaService {
 	    			.albumId(album.getId())
 	    			.build();
 	    	
-	    	int quantity = this.calculateQuantityByRarity(figurinhaPrototipoDTO);
+	    	int quantity = this.calculateQuantityByRaridade(figurinhaPrototipoDTO);
 	    	
 	    	for (int i = 0; i < quantity; i++) {
 	    		
@@ -105,8 +105,8 @@ public class FigurinhaServiceImpl implements FigurinhaService {
     	return figurinhasCreated;
 	}
 	
-	private int calculateQuantityByRarity(FigurinhaPrototipoDTO figurinhaPrototipoDTO) {
-		return switch(figurinhaPrototipoDTO.getRarity()) {
+	private int calculateQuantityByRaridade(FigurinhaPrototipoDTO figurinhaPrototipoDTO) {
+		return switch(figurinhaPrototipoDTO.getRaridade()) {
 			case 1 -> 1;
 			case 2 -> 3;
 			case 3 -> 6;

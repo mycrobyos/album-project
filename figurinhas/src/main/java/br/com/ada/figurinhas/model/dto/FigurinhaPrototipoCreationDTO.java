@@ -26,7 +26,7 @@ public class FigurinhaPrototipoCreationDTO {
 
     @NotNull(message = "Rarirty field is missing or blank.")
     //@Pattern(regexp="[1-4]")
-    private Integer rarity;
+    private Integer raridade;
 
     @NotNull(message = "Price field is missing or blank.")
     @DecimalMin(value = "0.0", inclusive = false)

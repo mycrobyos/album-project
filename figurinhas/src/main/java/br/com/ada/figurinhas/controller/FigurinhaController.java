@@ -92,13 +92,13 @@ public class FigurinhaController {
         }
     }
 
-    @PostMapping("/buy/pack")
-    public ResponseEntity<List<FigurinhaDTO>> buyFigurinhaPack(@RequestBody @Valid FigurinhaBuyPackDTO figurinhaBuyPackDTO) {
+    @PostMapping("/buy/pacote")
+    public ResponseEntity<List<FigurinhaDTO>> buyFigurinhaPacote(@RequestBody @Valid FigurinhaBuyPacoteDTO figurinhaBuyPacoteDTO) {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(mapper.parseListDTO(figurinhaServiceWithJournal.buyFigurinhaPack(figurinhaBuyPackDTO)));
+                    .body(mapper.parseListDTO(figurinhaServiceWithJournal.buyFigurinhaPacote(figurinhaBuyPacoteDTO)));
         } catch (Exception ex) {
             log.error(ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

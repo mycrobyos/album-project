@@ -23,7 +23,7 @@ public class FigurinhaPrototipoDTO {
 
     private String image;
 
-    private Integer rarity;
+    private Integer raridade;
 
     private BigDecimal figurinhaPrice;
 

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class FigurinhaBuyPackDTO {
+public class FigurinhaBuyPacoteDTO {
     @NotBlank(message = "AlbumId field is missing or blank.")
     private String albumId;
 

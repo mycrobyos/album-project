@@ -189,22 +189,22 @@ class FigurinhaControllerTest {
     }
 
     @Test
-    public void buyFigurinhaPackSuccess(){
+    public void buyFigurinhaPacoteSuccess(){
 
-        Mockito.when(figurinhaServiceWithJournal.buyFigurinhaPack(any())).thenReturn(Collections.singletonList(new Figurinha()));
-        ResponseEntity<List<FigurinhaDTO>> response = figurinhaController.buyFigurinhaPack(new FigurinhaBuyPackDTO());
+        Mockito.when(figurinhaServiceWithJournal.buyFigurinhaPacote(any())).thenReturn(Collections.singletonList(new Figurinha()));
+        ResponseEntity<List<FigurinhaDTO>> response = figurinhaController.buyFigurinhaPacote(new FigurinhaBuyPacoteDTO());
 
-        Mockito.verify(figurinhaServiceWithJournal).buyFigurinhaPack(new FigurinhaBuyPackDTO());
+        Mockito.verify(figurinhaServiceWithJournal).buyFigurinhaPacote(new FigurinhaBuyPacoteDTO());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
-    public void buyFigurinhaPackThrowException(){
+    public void buyFigurinhaPacoteThrowException(){
 
-        Mockito.when(figurinhaServiceWithJournal.buyFigurinhaPack(any())).thenThrow(RuntimeException.class);
-        ResponseEntity<List<FigurinhaDTO>> response = figurinhaController.buyFigurinhaPack(new FigurinhaBuyPackDTO());
+        Mockito.when(figurinhaServiceWithJournal.buyFigurinhaPacote(any())).thenThrow(RuntimeException.class);
+        ResponseEntity<List<FigurinhaDTO>> response = figurinhaController.buyFigurinhaPacote(new FigurinhaBuyPacoteDTO());
 
-        Mockito.verify(figurinhaServiceWithJournal).buyFigurinhaPack(new FigurinhaBuyPackDTO());
+        Mockito.verify(figurinhaServiceWithJournal).buyFigurinhaPacote(new FigurinhaBuyPacoteDTO());
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 

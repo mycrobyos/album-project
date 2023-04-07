@@ -9,7 +9,7 @@ import br.com.ada.figurinhas.service.FigurinhaJournalService;
 import br.com.ada.figurinhas.service.FigurinhaService;
 import br.com.ada.figurinhas.service.FigurinhaServiceWithJournal;
 import br.com.ada.figurinhas.service.FigurinhaToSellService;
-import br.com.ada.figurinhas.strategy.FigurinhaPackStrategy;
+import br.com.ada.figurinhas.strategy.FigurinhaPacoteStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +19,11 @@ import java.util.List;
 import java.util.Optional;
 
 /* Design Pattern: Strategy Pattern.
- * In the buyFigurinhaPack method, we need to get figurinhas to add to a pack.
+ * In the buyFigurinhaPacote method, we need to get figurinhas to add to a pacote.
  * There are many strategies for choosing figurinhas. Therefore, we can create an
  * interface and several implementations of this interface that choose
  * the figurinhas in different ways. Here, we have created an algorithm that
- * chooses figurinhas randomly (RandomFigurinhaPackStrategyImpl.java).
+ * chooses figurinhas randomly (RandomFigurinhaPacoteStrategyImpl.java).
  */
 @Slf4j
 @Service
@@ -33,31 +33,31 @@ public class FigurinhaServiceWithJournalImpl implements FigurinhaServiceWithJour
     private final FigurinhaService figurinhaService;
     private final FigurinhaMapper figurinhaMapper;
     private final FigurinhaToSellService figurinhaToSellService;
-    private final FigurinhaPackStrategy figurinhaPackStrategy;
+    private final FigurinhaPacoteStrategy figurinhaPacoteStrategy;
     public FigurinhaServiceWithJournalImpl(final FigurinhaService figurinhaService,
                                          final FigurinhaJournalService figurinhaJournalService,
                                          final FigurinhaMapper figurinhaMapper,
-                                         final FigurinhaToSellService figurinhaToSellService, FigurinhaPackStrategy figurinhaPackStrategy) {
+                                         final FigurinhaToSellService figurinhaToSellService, FigurinhaPacoteStrategy figurinhaPacoteStrategy) {
         this.figurinhaService = figurinhaService;
         this.figurinhaJournalService = figurinhaJournalService;
         this.figurinhaMapper = figurinhaMapper;
         this.figurinhaToSellService = figurinhaToSellService;
-        this.figurinhaPackStrategy = figurinhaPackStrategy;
+        this.figurinhaPacoteStrategy = figurinhaPacoteStrategy;
     }
     
     @Override
-    public List<Figurinha> buyFigurinhaPack(final FigurinhaBuyPackDTO figurinhaBuyPackDTO) {
+    public List<Figurinha> buyFigurinhaPacote(final FigurinhaBuyPacoteDTO figurinhaBuyPacoteDTO) {
         List<Figurinha> soldFigurinhas = new ArrayList<>();
         final Integer size = 5;
-        final String albumId = figurinhaBuyPackDTO.getAlbumId();
-        final String destinationAlbumId = figurinhaBuyPackDTO.getDestinationAlbumId();
+        final String albumId = figurinhaBuyPacoteDTO.getAlbumId();
+        final String destinationAlbumId = figurinhaBuyPacoteDTO.getDestinationAlbumId();
 
         // Get list of figurinhas from album prototipo
         final List<Figurinha> figurinhasFromAlbumId = figurinhaService.findByAlbumId(albumId);
         final List<Figurinha> figurinhasFromDestnationAlbumId = figurinhaService.findByAlbumId(destinationAlbumId);
 
-        // It generates a pack of figurinhas to be sold
-        soldFigurinhas = figurinhaPackStrategy.createFigurinhaPack(figurinhasFromAlbumId, size);
+        // It generates a pacote of figurinhas to be sold
+        soldFigurinhas = figurinhaPacoteStrategy.createFigurinhaPacote(figurinhasFromAlbumId, size);
 
         // Edit all figurinhas with new album id
         soldFigurinhas.forEach(figurinha -> figurinha.setAlbumId(destinationAlbumId));

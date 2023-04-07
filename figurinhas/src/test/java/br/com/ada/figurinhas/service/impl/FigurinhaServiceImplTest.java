@@ -186,7 +186,7 @@ class FigurinhaServiceImplTest {
                 .number(1)
                 .description("Figurinha 1")
                 .image("base64image")
-                .rarity(1)
+                .raridade(1)
                 .figurinhaPrice(new BigDecimal(1))
                 .build();
         return figurinhaPrototipoDTO;

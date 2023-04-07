@@ -112,7 +112,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
   "number": 1,
   "description": "Figurinha da Seleção",
   "image": "image",
-  "rarity": 2,
+  "raridade": 2,
   "figurinhaPrice":100.00
 }
 ###
@@ -125,7 +125,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
   "number": 2,
   "description": "Figurinha do Escudo do Brasil",
   "image": "image",
-  "rarity": 2,
+  "raridade": 2,
   "figurinhaPrice":100.00
 }
 ###
@@ -138,7 +138,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
   "number": 3,
   "description": "Figurinha do Goleiro Alisson",
   "image": "image",
-  "rarity": 3,
+  "raridade": 3,
   "figurinhaPrice":100.00
 }
 ###
@@ -151,7 +151,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 4,
     "description": "Figurinha do Goleiro Ederson",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -164,7 +164,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 5,
     "description": "Figurinha do Alex Sandro",
     "image": "image",
-    "rarity": 3,
+    "raridade": 3,
   "figurinhaPrice":100.00
 }
 ###
@@ -177,7 +177,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 6,
     "description": "Figurinha do Danilo",
     "image": "image",
-    "rarity": 3,
+    "raridade": 3,
   "figurinhaPrice":100.00
 }
 ###
@@ -190,7 +190,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 7,
     "description": "Figurinha do Éder Militão",
     "image": "image",
-    "rarity": 3,
+    "raridade": 3,
   "figurinhaPrice":100.00
 }
 ###
@@ -203,7 +203,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 8,
     "description": "Figurinha do Marquinhos",
     "image": "image",
-    "rarity": 3,
+    "raridade": 3,
   "figurinhaPrice":100.00
 }
 ###
@@ -216,7 +216,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 9,
     "description": "Figurinha do Thiago Silva",
     "image": "image",
-    "rarity": 2,
+    "raridade": 2,
   "figurinhaPrice":100.00
 }
 ###
@@ -229,7 +229,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 10,
     "description": "Figurinha do Casemiro",
     "image": "image",
-    "rarity": 2,
+    "raridade": 2,
   "figurinhaPrice":100.00
 }
 ###
@@ -242,7 +242,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 11,
     "description": "Figurinha do Philippe Coutinho",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -255,7 +255,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 12,
     "description": "Figurinha do Fabinho",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -268,7 +268,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 13,
     "description": "Figurinha do Fred",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -281,7 +281,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 14,
     "description": "Figurinha do Lucas Paquetá",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -294,7 +294,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 15,
     "description": "Figurinha do Antony",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -307,7 +307,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 16,
     "description": "Figurinha do Gabriel Jesus",
     "image": "image",
-    "rarity": 3,
+    "raridade": 3,
   "figurinhaPrice":100.00
 }
 ###
@@ -320,7 +320,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 17,
     "description": "Figurinha do Neymar Jr",
     "image": "image",
-    "rarity": 1,
+    "raridade": 1,
   "figurinhaPrice":100.00
 }
 ###
@@ -333,7 +333,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 18,
     "description": "Figurinha do Raphinha",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -346,7 +346,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 19,
     "description": "Figurinha do Richarlison",
     "image": "image",
-    "rarity": 4,
+    "raridade": 4,
   "figurinhaPrice":100.00
 }
 ###
@@ -359,7 +359,7 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "number": 20,
     "description": "Figurinha do Vinícius Jr",
     "image": "image",
-    "rarity": 1,
+    "raridade": 1,
   "figurinhaPrice":100.00
 }
 
@@ -458,9 +458,9 @@ POST {{host_figurinhas}}/figurinha/buy
 ###
 ###
 ### 
-### Buy Figurinha Pack <<<<<<<<<<<not working>>>>>>>>>>>
+### Buy Figurinha Pacote <<<<<<<<<<<not working>>>>>>>>>>>
 
-POST {{host_figurinhas}}/figurinha/buy/pack
+POST {{host_figurinhas}}/figurinha/buy/pacote
 
 {
     "albumId": "{{album_id}}",

@@ -40,7 +40,7 @@ public class FigurinhaServiceImplTest {
 		String defaultAlbumId = UUID.randomUUID().toString();
 		FigurinhaPrototipoDTO figurinhaPrototipoDTO = FigurinhaPrototipoDTO.builder()
 				.albumPrototipoId(albumPrototipoId)
-				.rarity(1)
+				.raridade(1)
 				.build();
 		List<FigurinhaPrototipoDTO> figurinhaPrototiposDTO = List.of(figurinhaPrototipoDTO);
 		ResponseEntity<List<FigurinhaPrototipoDTO>> response = ResponseEntity.ok(figurinhaPrototiposDTO);

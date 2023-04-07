@@ -2,17 +2,17 @@ package br.com.ada.figurinhas.strategy.impl;
 
 import br.com.ada.figurinhas.exceptions.InsufficientNumberOfFigurinhas;
 import br.com.ada.figurinhas.model.entity.Figurinha;
-import br.com.ada.figurinhas.strategy.FigurinhaPackStrategy;
+import br.com.ada.figurinhas.strategy.FigurinhaPacoteStrategy;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class RandomFigurinhaPackStrategyImpl implements FigurinhaPackStrategy {
+public class RandomFigurinhaPacoteStrategyImpl implements FigurinhaPacoteStrategy {
 
     @Override
-    public List<Figurinha> createFigurinhaPack(List<Figurinha> figurinhas, Integer size) {
+    public List<Figurinha> createFigurinhaPacote(List<Figurinha> figurinhas, Integer size) {
         if (Objects.isNull(figurinhas) || figurinhas.isEmpty() || Objects.isNull(size)) {
             throw new RuntimeException();
         }
