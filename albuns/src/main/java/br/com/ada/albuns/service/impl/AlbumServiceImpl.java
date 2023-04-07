@@ -61,8 +61,8 @@ public class  AlbumServiceImpl implements AlbumService {
   }
 
   @Override
-  public AlbumDTO findDefaultAlbum(String albumPrototipoId) {
-    Album defaultAlbum = repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId).orElseThrow(() -> new EntityNotFoundException());
-    return mapper.parseDTO(defaultAlbum);
+  public AlbumDTO findAlbumPadrao(String albumPrototipoId) {
+    Album albumPadrao = repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId).orElseThrow(() -> new EntityNotFoundException());
+    return mapper.parseDTO(albumPadrao);
   }
 }

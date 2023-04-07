@@ -111,14 +111,14 @@ public class AlbumServiceWithJournalImplTest {
 	}
 	
 	@Test
-	public void testFindDefaultAlbum() {
+	public void testFindAlbumPadrao() {
 		// Arrange
 		String albumPrototipoId = UUID.randomUUID().toString();
 		AlbumDTO album = new AlbumDTO();
-		when(albumService.findDefaultAlbum(albumPrototipoId)).thenReturn(album);
+		when(albumService.findAlbumPadrao(albumPrototipoId)).thenReturn(album);
 		
 		// Act
-		AlbumDTO actualAlbum = albumServiceWithJournal.findDefaultAlbum(albumPrototipoId);
+		AlbumDTO actualAlbum = albumServiceWithJournal.findAlbumPadrao(albumPrototipoId);
 		
 		// Assert
 		assertEquals(album, actualAlbum);

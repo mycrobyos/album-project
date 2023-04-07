@@ -48,7 +48,7 @@ public class AlbumPrototipoServiceImpl implements AlbumPrototipoService {
     albumPrototipo.setId(null);
 
     albumPrototipo = repository.save(albumPrototipo);
-    this.createDefaultAlbum(albumPrototipo);
+    this.createAlbumPadrao(albumPrototipo);
     return mapper.parseDTO(albumPrototipo);
   }
 
@@ -71,7 +71,7 @@ public class AlbumPrototipoServiceImpl implements AlbumPrototipoService {
     repository.deleteById(id);
   }
   
-  private void createDefaultAlbum(AlbumPrototipo albumPrototipo) {
+  private void createAlbumPadrao(AlbumPrototipo albumPrototipo) {
 	  Album album = Album.builder()
 			  .id(null)
 			  .usuarioId(null)

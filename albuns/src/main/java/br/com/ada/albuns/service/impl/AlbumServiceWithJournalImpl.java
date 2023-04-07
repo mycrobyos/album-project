@@ -69,7 +69,7 @@ public class AlbumServiceWithJournalImpl implements AlbumService {
   }
 
   @Override
-  public AlbumDTO findDefaultAlbum(String albumPrototipoId) {
-    return albumService.findDefaultAlbum(albumPrototipoId);
+  public AlbumDTO findAlbumPadrao(String albumPrototipoId) {
+    return albumService.findAlbumPadrao(albumPrototipoId);
   }
 }

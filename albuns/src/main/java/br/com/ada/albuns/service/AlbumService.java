@@ -9,5 +9,5 @@ public interface AlbumService {
   List<AlbumDTO> findAll();
   AlbumDTO findById(String id);
   AlbumDTO create(AlbumDTO entity);
-  AlbumDTO findDefaultAlbum(String albumPrototipoId);
+  AlbumDTO findAlbumPadrao(String albumPrototipoId);
 }

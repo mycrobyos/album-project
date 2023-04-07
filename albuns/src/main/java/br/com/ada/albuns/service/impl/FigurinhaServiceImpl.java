@@ -43,11 +43,11 @@ public class FigurinhaServiceImpl implements FigurinhaService {
 		    	throw new EntityNotFoundException("No figurinha template found for this album template");
 		    }
 	
-		    Album defaultAlbum = albumRepository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId).orElseThrow(() -> new EntityNotFoundException("Default album not found"));
+		    Album albumPadrao = albumRepository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId).orElseThrow(() -> new EntityNotFoundException("Default album not found"));
 		    List<FigurinhaPrototipoDTO> figurinhaPrototipos = figurinhaPrototiposResponse.getBody();
 		    if (figurinhaPrototipos != null) {
 		    	for (FigurinhaPrototipoDTO figurinhaPrototipo : figurinhaPrototipos) {
-			    	List<FigurinhaDTO> figurinhasCreatedInThisStep = this.createFigurinhas(figurinhaPrototipo, defaultAlbum);
+			    	List<FigurinhaDTO> figurinhasCreatedInThisStep = this.createFigurinhas(figurinhaPrototipo, albumPadrao);
 			    	if (figurinhasCreatedInThisStep != null) {
 			    		figurinhasCreated.addAll(figurinhasCreatedInThisStep);
 			    	} else {

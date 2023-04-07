@@ -37,19 +37,19 @@ public class FigurinhaServiceImplTest {
 	public void testCreateFigurinhasForAlbum() {
 		// Arrange
 		String albumPrototipoId = UUID.randomUUID().toString();
-		String defaultAlbumId = UUID.randomUUID().toString();
+		String albumPadraoId = UUID.randomUUID().toString();
 		FigurinhaPrototipoDTO figurinhaPrototipoDTO = FigurinhaPrototipoDTO.builder()
 				.albumPrototipoId(albumPrototipoId)
 				.raridade(1)
 				.build();
 		List<FigurinhaPrototipoDTO> figurinhaPrototiposDTO = List.of(figurinhaPrototipoDTO);
 		ResponseEntity<List<FigurinhaPrototipoDTO>> response = ResponseEntity.ok(figurinhaPrototiposDTO);
-		Album defaultAlbum = Album.builder()
-				.id(defaultAlbumId)
+		Album albumPadrao = Album.builder()
+				.id(albumPadraoId)
 				.build();
 		
 		when(figurinhaPrototipoClient.findAll(albumPrototipoId)).thenReturn(response);
-		when(albumRepository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId)).thenReturn(Optional.of(defaultAlbum));
+		when(albumRepository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId)).thenReturn(Optional.of(albumPadrao));
 		when(figurinhaClient.create(any())).thenReturn(ResponseEntity.ok().build());
 		
 		// Act

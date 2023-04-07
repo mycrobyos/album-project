@@ -119,7 +119,7 @@ public class AlbumServiceImplTest {
 	}
 	
 	@Test
-	public void testFindDefaultAlbum() {
+	public void testFindAlbumPadrao() {
 		// Arrange
 		String id = UUID.randomUUID().toString();
 		String albumPrototipoId = "AlbumPrototipoId";
@@ -132,7 +132,7 @@ public class AlbumServiceImplTest {
 		when(repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId)).thenReturn(Optional.of(album));
 		
 		// Act
-		AlbumDTO actualAlbumDTO = service.findDefaultAlbum(albumPrototipoId);
+		AlbumDTO actualAlbumDTO = service.findAlbumPadrao(albumPrototipoId);
 		
 		// Assert
 		assertEquals(id, actualAlbumDTO.getId());
@@ -141,12 +141,12 @@ public class AlbumServiceImplTest {
 	}
 
 	@Test
-	public void testFindDefaultAlbumNotFound() {
+	public void testFindAlbumPadraoNotFound() {
 		// Arrange
 		String albumPrototipoId = "AlbumPrototipoId";
 		when(repository.findByUsuarioIdAndAlbumPrototipoId(null, albumPrototipoId)).thenReturn(Optional.empty());
 		
 		// Act/Assert
-		assertThrows(EntityNotFoundException.class, () -> service.findDefaultAlbum(albumPrototipoId));
+		assertThrows(EntityNotFoundException.class, () -> service.findAlbumPadrao(albumPrototipoId));
 	}
 }
