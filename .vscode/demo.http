@@ -115,9 +115,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
   "raridade": 2,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo2
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -128,9 +128,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
   "raridade": 2,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo3
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -141,9 +141,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
   "raridade": 3,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo4
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -154,9 +154,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo5
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -167,9 +167,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 3,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo6
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -180,9 +180,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 3,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo7
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -193,9 +193,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 3,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo8
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -206,9 +206,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 3,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo9
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -219,9 +219,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 2,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo10
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -232,9 +232,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 2,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo11
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -245,9 +245,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo12
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -258,9 +258,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo13
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -271,9 +271,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo14
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -284,9 +284,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo15
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -297,9 +297,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo16
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -310,9 +310,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 3,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo17
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -323,9 +323,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 1,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo18
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -336,9 +336,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo19
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {
@@ -349,9 +349,9 @@ POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
     "raridade": 4,
   "figurinhaPrice":100.00
 }
+
 ###
 # @name figurinhaPrototipo20
-
 POST {{host_figurinhas}}/figurinha/prototipo HTTP/1.1
 
 {

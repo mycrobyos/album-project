@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,16 +56,24 @@ public class FigurinhaJournalServiceImpl implements FigurinhaJournalService {
     @Override
     public FigurinhaJournalDTO create(final FigurinhaJournalCreationDTO creationDTO) {
         FigurinhaJournal entity = mapper.parseEntity(creationDTO);
-        Figurinha figurinhaEntity = figurinhaMapper.parseEntity(
-                figurinhaService.findById(creationDTO.getFigurinha().getId()));
+        Figurinha figurinhaEntity = figurinhaMapper.parseEntity(figurinhaService.findById(creationDTO.getFigurinha().getId()));
         entity.setId(null);
         entity.setFigurinha(figurinhaEntity);
         entity = repository.save(entity);
-
-        redis.save(creationDTO.getFigurinha().getId(), figurinhaEntity.getId());
-        log.info(redis.get(creationDTO.getFigurinha().getId()));
+        
+        addBalanceToRedis(creationDTO);
 
         return mapper.parseDTO(entity);
+    }
+
+    private void addBalanceToRedis(FigurinhaJournalCreationDTO creationDTO){
+        if(redis.get(creationDTO.getSourceAlbumId()) == null){
+            redis.save(creationDTO.getSourceAlbumId(), creationDTO.getPrice().toString());
+        } else {
+            var sum = new BigDecimal(redis.get(creationDTO.getSourceAlbumId()));
+            sum.add(creationDTO.getPrice());
+            redis.save(creationDTO.getSourceAlbumId(), sum.toString());
+        }
     }
 
 }
