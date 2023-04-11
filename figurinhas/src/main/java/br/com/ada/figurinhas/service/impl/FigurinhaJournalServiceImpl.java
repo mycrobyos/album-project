@@ -10,13 +10,20 @@ import br.com.ada.figurinhas.repository.FigurinhaJournalRepository;
 import br.com.ada.figurinhas.service.FigurinhaJournalService;
 import br.com.ada.figurinhas.service.FigurinhaService;
 import jakarta.persistence.EntityNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class FigurinhaJournalServiceImpl implements FigurinhaJournalService {
+
+    @Autowired
+    RedisImpl redis;
 
     private final FigurinhaJournalRepository repository;
     private final FigurinhaJournalMapper mapper;
@@ -53,6 +60,10 @@ public class FigurinhaJournalServiceImpl implements FigurinhaJournalService {
         entity.setId(null);
         entity.setFigurinha(figurinhaEntity);
         entity = repository.save(entity);
+
+        redis.save(creationDTO.getFigurinha().getId(), figurinhaEntity.getId());
+        log.info(redis.get(creationDTO.getFigurinha().getId()));
+
         return mapper.parseDTO(entity);
     }
 
