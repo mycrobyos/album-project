@@ -13,7 +13,7 @@ spring:
 
   kafka:
     producer:
-      bootstrap-servers: suited-buzzard-13459-us1-kafka.upstash.io:9092
+      bootstrap-servers: ultimate-moth-7869-us1-kafka.upstash.io:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       group-id: group_id
@@ -21,7 +21,7 @@ spring:
         sasl:
           mechanism: SCRAM-SHA-256
           jaas:
-            config: org.apache.kafka.common.security.scram.ScramLoginModule required username="c3VpdGVkLWJ1enphcmQtMTM0NTkkIP_KlBWIrcT0delsEmOo24lUFbP9cPl_38I" password="5735722a4d6c41a2a0af53be19923051";
+            config: org.apache.kafka.common.security.scram.ScramLoginModule required username="dWx0aW1hdGUtbW90aC03ODY5JE3bGQ1IxGGxUrkv_oOefjfKAcXoMtuDld2ffSY" password="b2262fbe5ee6423689dc3347606400fb";
         security:
           protocol: SASL_SSL
 

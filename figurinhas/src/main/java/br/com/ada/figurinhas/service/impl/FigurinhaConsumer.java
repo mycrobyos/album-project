@@ -16,12 +16,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class FigurinhaConsumer {
-    private final String topicName = "TOPIC_CREATE_FIGURINHAS";
+    private final String topicName = "CREATE_FIGURINHA_TOPIC";
 
     @Autowired
     private FigurinhaService stickerService;
 
-    @KafkaListener(topics = "TOPIC_CREATE_FIGURINHAS", groupId = "group_id" )
+    @KafkaListener(topics = "CREATE_FIGURINHA_TOPIC", groupId = "group_id" )
     public void consume(ConsumerRecord<String, String> payload){
         log.info("Tópico: {}", topicName);
         log.info("key: {}", payload.key());
