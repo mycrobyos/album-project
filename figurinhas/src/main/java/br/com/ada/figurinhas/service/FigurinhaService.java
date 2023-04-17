@@ -1,5 +1,6 @@
 package br.com.ada.figurinhas.service;
 
+import br.com.ada.figurinhas.model.dto.CreateFigurinhasMessage;
 import br.com.ada.figurinhas.model.dto.FigurinhaCreationDTO;
 import br.com.ada.figurinhas.model.dto.FigurinhaDTO;
 import br.com.ada.figurinhas.model.dto.FigurinhaUpdateDTO;
@@ -16,4 +17,5 @@ public interface FigurinhaService {
     void delete(String id);
     List<Figurinha> findByAlbumId(String albumId);
     List<Figurinha> editAll(List<Figurinha> entities);
+    boolean createFigurinhasForAlbum(CreateFigurinhasMessage createFigurinhasMessage);
 }

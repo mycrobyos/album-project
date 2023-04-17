@@ -1,22 +1,28 @@
 package br.com.ada.figurinhas.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import br.com.ada.figurinhas.model.dto.CreateFigurinhasMessage;
 import br.com.ada.figurinhas.model.dto.FigurinhaCreationDTO;
 import br.com.ada.figurinhas.model.dto.FigurinhaDTO;
+import br.com.ada.figurinhas.model.dto.FigurinhaPrototipoDTO;
 import br.com.ada.figurinhas.model.dto.FigurinhaUpdateDTO;
 import br.com.ada.figurinhas.model.entity.Figurinha;
 import br.com.ada.figurinhas.model.entity.FigurinhaPrototipo;
 import br.com.ada.figurinhas.model.mapper.FigurinhaMapper;
 import br.com.ada.figurinhas.model.mapper.FigurinhaPrototipoMapper;
 import br.com.ada.figurinhas.repository.FigurinhaRepository;
-import br.com.ada.figurinhas.service.FigurinhaService;
 import br.com.ada.figurinhas.service.FigurinhaPrototipoService;
+import br.com.ada.figurinhas.service.FigurinhaService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class FigurinhaServiceImpl implements FigurinhaService {
 
     private final FigurinhaRepository repository;
@@ -96,6 +102,95 @@ public class FigurinhaServiceImpl implements FigurinhaService {
     @Override
     public List<Figurinha> findByAlbumId(String albumId) {
         return repository.findByAlbumId(albumId);
+    }
+
+    @Override
+    public boolean createFigurinhasForAlbum(CreateFigurinhasMessage createFigurinhaMessage) {
+        List<FigurinhaDTO> figurinhasCreated = new ArrayList<>();
+        boolean shouldRevertFigurinhasCreation = false;
+
+        try {
+            List<FigurinhaPrototipoDTO> figurinhaPrototipos = figurinhaPrototipoService.findAll(Optional.ofNullable(createFigurinhaMessage.getAlbumPrototipoId()));
+//            if (!figurinhaPrototiposResponse.getStatusCode().equals(HttpStatus.OK)) {
+//                log.error("Error retrieving figurinha templates: {}", figurinhaPrototiposResponse.getStatusCode());
+//                throw new EntityNotFoundException("No figurinha template found for this album template");
+//            }
+
+            //Album defaultAlbum = albumRepository.findByUserIdAndAlbumPrototipoId(null, albumPrototipoId).orElseThrow(() -> new EntityNotFoundException("Default album not found"));
+
+            if (figurinhaPrototipos != null) {
+                for (FigurinhaPrototipoDTO figurinhaPrototipo : figurinhaPrototipos) {
+                    List<FigurinhaDTO> figurinhasCreatedInThisStep =this.createFigurinhas(figurinhaPrototipo, createFigurinhaMessage);
+                    if (figurinhasCreatedInThisStep != null) {
+                        figurinhasCreated.addAll(figurinhasCreatedInThisStep);
+                    } else {
+                        shouldRevertFigurinhasCreation = true;
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            shouldRevertFigurinhasCreation = true;
+        }
+
+        if (shouldRevertFigurinhasCreation) {
+            //this.revertFigurinhasCreation(figurinhasCreated);
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private List<FigurinhaDTO> createFigurinhas(FigurinhaPrototipoDTO figurinhaPrototipoDTO, CreateFigurinhasMessage createFigurinhaMessage) {
+        List<FigurinhaDTO> figurinhasCreated = new ArrayList<>();
+        boolean shouldRevertFigurinhasCreation = false;
+
+        try {
+            FigurinhaCreationDTO figurinhaCreationDTO = FigurinhaCreationDTO.builder()
+                    .figurinhaPrototipoId(figurinhaPrototipoDTO.getId())
+                    .albumId(createFigurinhaMessage.getAlbumId())
+                    .build();
+
+            int quantity = this.calculateQuantityByRarity(figurinhaPrototipoDTO);
+
+            for (int i = 0; i < quantity; i++) {
+
+                log.info("Creating figurinha {} for {}", i + 1, figurinhaPrototipoDTO.getDescription());
+                FigurinhaDTO response = this.create(figurinhaCreationDTO);
+
+            }
+        } catch (Exception e) {
+            shouldRevertFigurinhasCreation = true;
+        }
+
+        if (shouldRevertFigurinhasCreation) {
+            this.revertFigurinhasCreation(figurinhasCreated);
+            return null;
+        }
+
+        return figurinhasCreated;
+    }
+
+    private int calculateQuantityByRarity(FigurinhaPrototipoDTO figurinhaPrototipoDTO) {
+        return switch(figurinhaPrototipoDTO.getRaridade()) {
+            case 1 -> 1;
+            case 2 -> 3;
+            case 3 -> 6;
+            case 4 -> throw new RuntimeException("Fake exception");//10;
+            default -> 0;
+        };
+    }
+
+    private void revertFigurinhasCreation(List<FigurinhaDTO> figurinhasToRevert) {
+        figurinhasToRevert.forEach(figurinhaToRevert -> {
+            try {
+                log.info("Reverting figurinha {}", figurinhaToRevert.getId());
+               // figurinhaClient.delete(figurinhaToRevert.getId());
+            } catch(Exception e) {
+                log.error("Error reverting figurinha creation for figurinha {}: {}", figurinhaToRevert.getId(), e.getMessage());
+            }
+        });
     }
 
 }

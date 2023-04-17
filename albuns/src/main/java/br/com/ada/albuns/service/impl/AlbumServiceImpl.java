@@ -1,28 +1,30 @@
 package br.com.ada.albuns.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
 import br.com.ada.albuns.model.dto.AlbumDTO;
 import br.com.ada.albuns.model.entity.Album;
 import br.com.ada.albuns.model.mapper.AlbumMapper;
 import br.com.ada.albuns.repository.AlbumRepository;
 import br.com.ada.albuns.service.AlbumService;
-import br.com.ada.albuns.service.FigurinhaService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class  AlbumServiceImpl implements AlbumService {
 
   private final AlbumRepository repository;
   private final AlbumMapper mapper;
-  private final FigurinhaService figurinhaService;
+  private final AlbumProducer producer;
 
   public AlbumServiceImpl(AlbumRepository repository, AlbumMapper mapper,
-		  FigurinhaService figurinhaService) {
+		  AlbumProducer producer) {
     this.repository = repository;
     this.mapper = mapper;
-    this.figurinhaService = figurinhaService;
+    this.producer = producer;
   }
 
   @Override
@@ -45,17 +47,25 @@ public class  AlbumServiceImpl implements AlbumService {
     album = repository.save(album);
     
     try {
-	    if (!figurinhaService.createFigurinhasForAlbum(entity.getAlbumPrototipoId())) {
-	    	shouldRevertAlbumCreation = true;
-	    }
+	    // if (!figurinhaService.createFigurinhasForAlbum(entity.getAlbumPrototipoId())) {
+	    // 	shouldRevertAlbumCreation = true;
+	    // }
+      
+      Map<String, Object> map = new HashMap<>();
+
+      map.put("albumId", album.getId());
+      map.put("albumTemplateId", album.getAlbumPrototipoId());
+      producer.send(map);
+      shouldRevertAlbumCreation = true;
+
     } catch (Exception e) {
     	shouldRevertAlbumCreation = true;
     }
     
-    if (shouldRevertAlbumCreation) {
-    	repository.delete(album);
-    	throw new RuntimeException("Error creating album");
-    }
+    // if (shouldRevertAlbumCreation) {
+    // 	repository.delete(album);
+    // 	throw new RuntimeException("Error creating album");
+    // }
     
     return mapper.parseDTO(album);
   }
