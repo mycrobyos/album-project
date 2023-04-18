@@ -25,7 +25,7 @@ public class AlbumProducer {
             ObjectMapper mapper = new ObjectMapper();
 
             String value = mapper.writeValueAsString(message);
-            String topicName = "CREATE_FIGURINHA_TOPIC";
+            String topicName = "CREATE_FIGURINHAS_TOPIC";
 
             kafkaTemplate.send(topicName, CREATE_FIGURINHA ,value);
 
